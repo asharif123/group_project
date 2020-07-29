@@ -1,0 +1,38 @@
+.welcome{
+    background-image: url("/static/cut_vegetables.JPG");
+    background-size: 100%;
+  }
+
+.dessert{
+  background-image: url("/static/coconut_cream.JPG");
+  background-size: 100%;
+  
+  
+  }recipe_app\static\cut_vegetables.JPG
+  
+  
+/* .welcome{
+    /* The image used */
+  
+    /* Full height */
+  /* height: 100%; */
+  
+    /* Center and scale the image nicely */
+  /* background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+/* } */ 
+
+  /* .dessert{
+    /* The image used */
+  
+    /* Full height */
+    /* height: 100%; */
+  
+    /* Center and scale the image nicely */
+    /* background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  } */ 
+
+

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style/css/style.css">
+    {% load static %}
+
+</head>
+<body class="bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="recipes col-12">
+                <div class="navbar col-12">
+                    <em><h1 class="active">Create Recipe</h1></em>
+                    {% comment %} <div class="col-5"> {% endcomment %}
+                        <nav class="navbar navbar-expand-lg rounded navbar-light bg-secondary">
+                            <span class="border border-dark"></span>
+                                <div class="collapse navbar-collapse" id="navbarNav">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item active">
+                                            <a class="nav-link text-white" href="/welcome">Home</a>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <a class="nav-link text-white" href="/contact/admins">Contact</a>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <a class="nav-link text-white" href="/">Careers</a>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <a class="nav-link text-white" href="/user/account">Profile</a>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <a class="nav-link text-white" href="/logout">Logout</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </span>
+                        </nav>
+                        <div class='col-12 px-5'>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <ul>   
+                                        <h4><li class="text text-danger">{{ message }}</li></strong></h4>
+                                    </ul>    
+                                {% endfor %}
+                            {% endif %}                
+                        </div>
+
+                        <br><br><br>
+                </div>
+
+                <div class="add_recipe col-12">
+    <!-- print out any errors if validation fails for either registeration or logging in -->
+                    <form action="/recipe/add" enctype = "multipart/form-data" method="post">
+                        <div class="col-7">
+
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-12">
+                                    <h6>Recipe Title</h6>
+                                    <input type="text" id="recipe_name" class="form-control col-12" name="Recipe_Name">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h6>Description</h6>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" columns="5" name="Description"></textarea>                            
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h6>Ingredients</h6>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" columns="5" name="Ingredients" placeholder="Put each ingredient in its own line"></textarea>                            
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h6>Steps</h6>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" columns="5" name="Steps" placeholder="Put each step in its own line"></textarea>                            
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                        <div class="col-5">
+                            <h6>Add your recipe image</h6>
+                            <img src={% static "camera.JPG" %}>
+                            <br><br>
+                            <input type="file" id="Image" name="Image">
+                        </div>
+                            <br>
+                            <button type="submit" class="btn btn-success">Add Recipe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

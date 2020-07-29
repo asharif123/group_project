@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="style/css/style.css">
+        {% load static %}
+
+    </head>
+    <body class="bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 px-3">
+                    <div class="form-group row">
+                        <em><h1 class="active">Dessert of the week!</h1></em>
+                    </div>
+
+                    {% if messages %}
+                        <br>
+                        {% for message in messages %}
+                            <ul>   
+                                 <h4><li class="text text-danger">{{ message }}</li></strong></h4>
+                            </ul>    
+                        {% endfor %}
+                    {% endif %} 
+                    <div class="col-12">               
+                        <img src="{{recipes.image.url}}" width="500" height="500">
+                    </div>
+                    <div class="col-12">
+                        <br>
+                        <em><u><h1>{{recipes.name}}</h1></u></em>
+                        <br><br>
+                        <em><h4>Average rating: {{rating}} stars</h4></em>
+                        <br>
+                        <em><h6>Created by: {{recipes.owner.first_name}} {{recipes.owner.last_name}}</h6></em>
+                        <br>
+                        <em><u><h4>Description: </h4></u></em>
+                        <br>
+                        <p>{{recipes.summary}}
+                        <br>
+                        <em><u><h4>Ingredients: </h4></u></em>
+                        <br>
+                        {% for ingredient in ingredients %}
+                            {{ ingredient }}
+                            <br>
+                        {% endfor %}
+                        <br>
+                        <em><u><h4>Steps: </h4></u></em>
+                        <br>
+                        {% for step in steps %}
+                            {{ step }}
+                            <br>
+                        {% endfor %}
+                        {% if User.id == recipe.owner.id %}
+                            <br>
+                            <a class="btn btn-danger" href="/recipes/delete/{{recipes.id}}" role="button">Delete Recipe</a>
+                        {% endif %}
+                    </div>
+
+
+
+                </div>
+
+                <div class="col-6">
+                    <div class="col-12">
+                    {% comment %} <div class="col-5"> {% endcomment %}
+                        <nav class="navbar navbar-expand-lg rounded navbar-light bg-secondary">
+                            <span class="border border-dark"></span>
+                                <div class="collapse navbar-collapse" id="navbarNav">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item active">
+                                            <a class="nav-link text-white" href="/desserts/page">Home</a>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <a class="nav-link text-white" href="/contact/admins">Contact</a>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <a class="nav-link text-white" href="/">Careers</a>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <a class="nav-link text-white" href="/user/account">Profile</a>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <a class="nav-link text-white" href="/logout">Logout</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </span>
+                        </nav>
+
+                    </div>
+                    <br><br>
+                    <form action="/review/add/{{recipe.id}}" method="post">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <em><h4>Add Review: </h4></em>
+                            <br>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" name="Review" rows="3"></textarea>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label for="Rating">Rating:</label>
+                                <select name="Rating" id="Rating">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>                            
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                    </form>
+                    <br>
+                    <div class="col-12">
+                        <u><em><h3 class="text-center">Reviews:</h3></em></u>
+                        <br>
+
+                        <div class="form-group row">
+                            {% for review in Reviews %}
+                                <br><br>
+                                <div class="card-deck col-12 bg-dark-rounded">
+                                    <br><br><br><br>
+                                    <div class="card mb-4 bg-light rounded border border-dark">
+
+                                        <div class="col-12">
+                                            <div class="col-12">
+                                                <b>Rating: {{review.rating}} stars</b>
+                                                <br><br>
+                                                <strong>{{review.reviewer.first_name}}</strong> says: <em>{{review.content}}</em>
+                                                <br><br>
+                                                <em>Posted On: {{review.created_at}}</em>
+                                                <br><br>
+                                                {% if User.id == review.reviewer.id %}
+                                                    <div class="form-group row">
+                                                        <div class="col-12">
+                                                            <a class="btn btn-sm btn-danger" href="/review/delete/{{review.id}}/{{recipe.id}}" role="button">Delete Review</a>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br><br>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="my-5 pt-5 light text-muted text-center text-center">
+            <ul>
+                <li><a class="text-black" href="/advertisements">Advertisements</a>  <a href="/policy">Private Policy</a> <a href="/help">Help</a> <a href="/about">About</a> <a href="/policy">Visitor Agreement</a></li>
+                <li>Copyright &copy;  2020</li>
+            </ul>
+        </footer>
+
+    </body>
+</html>
