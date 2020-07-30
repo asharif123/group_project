@@ -1,0 +1,32 @@
+
+.messages{
+    color: red;
+}
+.register{
+    display: inline-block;
+    padding: 25px 25px 25px 20px;
+    margin-right: 100px;
+    margin-left: 20px;
+    border: 1px solid black;
+}
+
+.login{
+    display: inline-block;
+    padding: 20px;
+    border: 1px solid black;
+    vertical-align: top;
+}
+
+h2{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    text-decoration: underline;
+}
+p{
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+input{
+    padding-right: 15px;
+}

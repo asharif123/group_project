@@ -1,60 +1,50 @@
-from PIL import Image
+from __future__ import unicode_literals
 import re, bcrypt
 from django.db import models
 
+#######################################################################
+
+
+class UserManager(models.Manager):
+    def basic_validator(self, postData, sign_in):
+        errors = {}
+        if sign_in == 'registration':
+            if len(postData['first_name'])<2:
+                errors['first_name'] = "First name needs to be longer than 2 characters"
+            if len(postData['last_name'])<2:
+                errors['last_name'] = "Last name needs to be longer than 2 characters"
+            if len(postData['password'])<8:
+                errors['password'] = "Password needs to be longer than 8 characters"
+            if postData['confirm_password'] != postData['password']:
+                errors['confirm_password'] = "Passwords do NOT match"
+
+            EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+            if not EMAIL_REGEX.match(postData['email']): # test whether a field matches the pattern
+                errors['email'] = ("Invalid email address!")
+
+        elif sign_in == 'login':
+            user = User.objects.filter(email=postData['email'])
+            if not user:
+                errors['user_login'] = 'Incorrect email'
+            else:
+                if not bcrypt.checkpw(postData['password'].encode(), user[0].password.encode()):
+                    errors['user_password'] = 'Incorrect Password'
+
+        return errors
+
+class User(models.Model):
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    email = models.EmailField(max_length=255)
+    password = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    objects = UserManager()
+
 # Create your models here.
 
-class Users_Manager(models.Manager):
 
-    def registration_validator(self, postData):
-        errors = {}
-
-        if len(postData["First_Name"]) < 2:
-            errors["First_Name"] = "First Name must have at least 2 characters!"
-
-        if len(postData["Last_Name"]) < 2:
-            errors["Last_Name"] = "Last Name must have at least 2 characters!"
-
-        # see if email is either in correct format or in the database
-        REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
-        if not REGEX.match(postData['Email']):                
-            errors['Email'] = ("Invalid email address format!")
-
-        email = Users.objects.filter(email=postData["Email"])
-        if len(email) > 0:
-            errors["Email"] = ("Account already exists!")
-
-        if len(postData["Password"]) < 8:
-            errors["Password"] = ("Password must be at least 8 characters!")
-
-        if (postData["Password"] != postData["Confirm"]):
-            errors["Password"] = ("Password and Confirm password do not match!")
-
-        return errors
-
-    def login_validator(self,postData):
-        errors = {}
-
-        REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
-        if not REGEX.match(postData["Email"]):                
-            errors['Email'] = ("Invalid email address format!")
-
-        if len(postData["Password"]) < 8:
-            errors["Password"] = ("Password must be at least 8 characters!")
-
-        # check if login email is in the database!
-        #if login email in database, see if the password entered matches to stored password for that email in the database
-        user = Users.objects.filter(email=postData["Email"])
-
-        if len(user) == 0:
-            errors["Email"] = ("Email does not exists, please register or try a different account!")
-
-        else:
-            user = Users.objects.filter(email=postData["Email"])[0]
-            if not bcrypt.checkpw(postData["Password"].encode(), user.password.encode()):
-                errors["Password"] = ("Password is incorrect!")
-
-        return errors
+# Create your models here.
 
 class Recipes_Manager(models.Manager):
 
@@ -84,15 +74,7 @@ class Reviews_Manager(models.Manager):
         return errors
 
 
-class Users(models.Model):
 
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    email = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    objects = Users_Manager()
 
 class Recipes(models.Model):
     name = models.CharField(max_length=255)
@@ -100,7 +82,7 @@ class Recipes(models.Model):
     ingredients = models.TextField()
     steps = models.TextField()
     image = models.ImageField()
-    owner = models.ForeignKey(Users,related_name="recipes_of_user",on_delete = models.CASCADE)
+    owner = models.ForeignKey(User,related_name="recipes_of_user",on_delete = models.CASCADE)
     is_dessert = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -110,10 +92,13 @@ class Recipes(models.Model):
 class Reviews(models.Model):
     content = models.TextField()
     rating = models.IntegerField()
-    reviewer = models.ForeignKey(Users,related_name="reviews_of_user",on_delete = models.CASCADE)
+    reviewer = models.ForeignKey(User,related_name="reviews_of_user",on_delete = models.CASCADE)
     recipe = models.ForeignKey(Recipes,related_name="reviews_of_recipe",on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True) 
     objects = Reviews_Manager()
+
+##########################################################################################################
+
 
 

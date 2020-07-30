@@ -5,13 +5,20 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    # logout
     path('', views.index),
+    path('registration', views.registration),
+    path('registered', views.registered),
+    path('login', views.login),
+    path('cookbook', views.cookbook),
+    path('logout', views.logout),
+    path('founders', views.founders),
+    path('privacypolicy', views.privacypolicy),
+    path('terms', views.terms),
+    path('userprofile/<int:id>', views.userprofile),
+    path('search', views.search),
+    ####################Ricky
     # main dishes
     path('welcome', views.welcome),
-    path('logout', views.logout),
-    path('register', views.add_account),
-    path('login', views.login),
     path('recipe/create', views.create_recipe),
     path('recipe/add', views.add_recipe),
     path('recipe/best', views.dish_of_the_week),
