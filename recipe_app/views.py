@@ -90,7 +90,7 @@ def search(request):
 ################################################################################################################
 
 def welcome(request):
-    if 'id' not in request.session:
+    if 'userid' not in request.session:
         return redirect('/')
 
     user = User.objects.get(id=request.session['userid'])
@@ -119,7 +119,7 @@ def welcome(request):
     return render(request,'welcome.html', context)
 
 def filter_recipe(request):
-    if 'id' not in request.session:
+    if 'userid' not in request.session:
         return redirect('/')
     filtered_recipes = []
     user = User.objects.get(id=request.session['userid'])
@@ -134,7 +134,7 @@ def filter_recipe(request):
     return render(request,'filtered_recipes.html',context)
     
 def filter_dessert(request):
-    if 'id' not in request.session:
+    if 'userid' not in request.session:
         return redirect('/')
     filtered_recipes = []
     user = User.objects.get(id=request.session['userid'])
@@ -151,7 +151,7 @@ def filter_dessert(request):
 
 
 def create_recipe(request):
-    if 'id' not in request.session:
+    if 'userid' not in request.session:
         return redirect('/')
 
     user = User.objects.get(id=request.session['userid'])
@@ -162,7 +162,7 @@ def create_recipe(request):
     return render(request, 'add_recipe.html', context)
 
 def add_recipe(request):
-    if 'id' not in request.session:
+    if 'userid' not in request.session:
         return redirect('/')
 
     errors = Recipes.objects.recipe_validator(request.POST)
@@ -182,7 +182,7 @@ def add_recipe(request):
     return redirect(f'/recipe/info/{recipe.id}')
 
 def recipe_info(request,id):
-    if 'id' not in request.session:
+    if 'userid' not in request.session:
         return redirect('/')
 
     recipe = Recipes.objects.get(id=id)
@@ -212,7 +212,7 @@ def recipe_info(request,id):
     return render(request,'recipe_info.html',context)
 
 def dish_of_the_week(request):
-    if 'id' not in request.session:
+    if 'userid' not in request.session:
         return redirect('/')
     recipes = Recipes.objects.all()
 
@@ -260,7 +260,7 @@ def dish_of_the_week(request):
 
 
 def delete_recipe(request,id):
-    if 'id' not in request.session:
+    if 'userid' not in request.session:
         return redirect('/')
 
     recipe_to_delete = Recipes.objects.get(id=id)
@@ -268,7 +268,7 @@ def delete_recipe(request,id):
     return redirect('/welcome')
 
 def edit_recipe(request,id):
-    if 'id' not in request.session:
+    if 'userid' not in request.session:
         return redirect('/')
     user = User.objects.get(id=request.session['userid'])
     recipe = Recipes.objects.get(id=id)
@@ -280,7 +280,7 @@ def edit_recipe(request,id):
     return render(request, 'edit_recipe.html', context)
 
 def update_recipe(request,id):
-    if 'id' not in request.session:
+    if 'userid' not in request.session:
         return redirect('/')
     recipe_to_update = Recipes.objects.get(id=id)
     errors = Recipes.objects.recipe_validator(request.POST)
@@ -307,7 +307,7 @@ def update_recipe(request,id):
         return redirect(f'/recipe/info/{recipe_to_update.id}')
 
 def add_review_to_recipe(request,id):
-    if 'id' not in request.session:
+    if 'userid' not in request.session:
         return redirect('/')
 
     recipe = Recipes.objects.get(id=id)
@@ -320,7 +320,7 @@ def add_review_to_recipe(request,id):
     return redirect(f'/recipe/info/{recipe.id}')
 
 def delete_review(request,review_id,recipe_id):
-    if 'id' not in request.session:
+    if 'userid' not in request.session:
         return redirect('/')
 
     review = Reviews.objects.get(id=review_id)
@@ -355,7 +355,7 @@ def desserts(request):
     return render(request,'dessert.html',context)
 
 def create_dessert(request):
-    if 'id' not in request.session:
+    if 'userid' not in request.session:
         return redirect('/')
 
     user = User.objects.get(id=request.session['userid'])
@@ -366,7 +366,7 @@ def create_dessert(request):
     return render(request, 'add_dessert.html', context)
 
 def add_dessert(request):
-    if 'id' not in request.session:
+    if 'userid' not in request.session:
         return redirect('/')
 
     errors = Recipes.objects.recipe_validator(request.POST)
@@ -388,7 +388,7 @@ def add_dessert(request):
     return redirect(f'/dessert/info/{recipe.id}')
 
 def dessert_info(request,id):
-    if 'id' not in request.session:
+    if 'userid' not in request.session:
         return redirect('/')
 
     recipe = Recipes.objects.get(id=id)
@@ -419,7 +419,7 @@ def dessert_info(request,id):
     return render(request,'dessert_info.html',context)
 
 def add_review_to_dessert(request,id):
-    if 'id' not in request.session:
+    if 'userid' not in request.session:
         return redirect('/')
 
     recipe = Recipes.objects.get(id=id)
@@ -433,7 +433,7 @@ def add_review_to_dessert(request,id):
     return redirect(f'/dessert/info/{recipe.id}')
 
 def delete_dessert(request,id):
-    if 'id' not in request.session:
+    if 'userid' not in request.session:
         return redirect('/')
 
     dessert_to_delete = Recipes.objects.get(id=id)
@@ -441,7 +441,7 @@ def delete_dessert(request,id):
     return redirect('/desserts/page')
 
 def edit_dessert(request,id):
-    if 'id' not in request.session:
+    if 'userid' not in request.session:
         return redirect('/')
     user = User.objects.get(id=request.session['userid'])
     recipe = Recipes.objects.get(id=id)
@@ -453,7 +453,7 @@ def edit_dessert(request,id):
     return render(request, 'edit_dessert.html', context)
 
 def update_dessert(request,id):
-    if 'id' not in request.session:
+    if 'userid' not in request.session:
         return redirect('/')
     recipe_to_update = Recipes.objects.get(id=id)
     errors = Recipes.objects.recipe_validator(request.POST)
@@ -482,7 +482,7 @@ def update_dessert(request,id):
 
 
 def dessert_of_the_week(request):
-    if 'id' not in request.session:
+    if 'userid' not in request.session:
         return redirect('/')
     recipes = Recipes.objects.all()
 
