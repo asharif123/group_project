@@ -4,40 +4,96 @@ from django.contrib import messages
 import bcrypt
 from .models import *
 
-# Create your views here.
+##############################################################################################################
+
 def index(request):
-    return render(request,'index.html')
+    return render(request, 'index.html')
 
-def add_account(request):
-    errors = Users.objects.registration_validator(request.POST)
-    if len(errors) > 0:
-        for key, value in errors.items():
-            messages.error(request, value)
+def registration(request):
+    errors = User.objects.basic_validator(request.POST, 'registration')
+    if len(errors)>0:
+        for key,value in errors.items():
+            messages.error(request,value)
         return redirect('/')
-    password = request.POST['Password']
+    else:
+        password = request.POST['password']
+        pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
+        print(pw_hash)
+        
+        User.objects.create(first_name = request.POST['first_name'], last_name = request.POST['last_name'], email = request.POST['email'], password = pw_hash)
 
-    pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
-    User = Users.objects.create(first_name=request.POST["First_Name"],last_name=request.POST["Last_Name"],email=request.POST["Email"],password=pw_hash)
-    # Create user's id from the created database, use this to retain info when navigating to another page
-    request.session['id'] = User.id
-    return redirect('/welcome')
+        return redirect('/registered')
+
+def registered(request):
+    return redirect('/')
 
 def login(request):
-    errors = Users.objects.login_validator(request.POST)
-    if len(errors) > 0:
-        for key, value in errors.items():
-            messages.error(request, value)
+    errors = User.objects.basic_validator(request.POST, 'login')
+    if len(errors)>0:
+        for key,value in errors.items():
+            messages.error(request,value)
         return redirect('/')
-    User = Users.objects.filter(email=request.POST["Email"])[0]
-    if bcrypt.checkpw(request.POST['Password'].encode(), User.password.encode()):
-        request.session['id'] = User.id
-        return redirect('/welcome')
+    else:
+        user = User.objects.filter(email=request.POST['email'])
+        if user:
+            logged_user = user[0]
+            if bcrypt.checkpw(request.POST['password'].encode(), logged_user.password.encode()):
+                request.session['userid'] = logged_user.id
+                return redirect("/cookbook") #redirect to success route
+        # return redirect('/')
+
+def cookbook(request):
+    user = User.objects.get(id = request.session['userid'])
+    context = {
+        'user':user,
+    }
+    return render(request, 'cookbook.html',context)
+
+def logout(request):
+    request.session.flush()
+    return redirect('/')
+
+def founders(request):
+    user = User.objects.get(id = request.session['userid'])
+    context = {
+        'user':user,
+    }
+    return render(request, "founders.html", context)
+
+def privacypolicy(request):
+    user = User.objects.get(id = request.session['userid'])
+    context = {
+        'user':user,
+    }
+    return render(request, "privacypolicy.html", context)
+
+def terms(request):
+    user = User.objects.get(id = request.session['userid'])
+    context = {
+        'user':user,
+    }
+    return render(request, "terms.html", context)
+
+def userprofile(request, id):
+    user = User.objects.get(id = request.session['userid'])
+    context = {
+        'user':user,
+    }
+    return render(request, "userprofile.html", context)
+
+def search(request):
+    user = User.objects.get(id = request.session['userid'])
+    pass
+
+
+
+################################################################################################################
 
 def welcome(request):
     if 'id' not in request.session:
         return redirect('/')
 
-    user = Users.objects.get(id=request.session['id'])
+    user = User.objects.get(id=request.session['userid'])
     recipes = Recipes.objects.all()
     all_reviews = []
     all_recipes = []
@@ -66,7 +122,7 @@ def filter_recipe(request):
     if 'id' not in request.session:
         return redirect('/')
     filtered_recipes = []
-    user = Users.objects.get(id=request.session['id'])
+    user = User.objects.get(id=request.session['userid'])
     recipes = Recipes.objects.all()
     for recipe in recipes:
         if (request.POST["Filter"] in (recipe.name)):
@@ -81,7 +137,7 @@ def filter_dessert(request):
     if 'id' not in request.session:
         return redirect('/')
     filtered_recipes = []
-    user = Users.objects.get(id=request.session['id'])
+    user = User.objects.get(id=request.session['userid'])
     recipes = Recipes.objects.all()
     for recipe in recipes:
         if (request.POST["Filter"] in (recipe.name)):
@@ -94,15 +150,11 @@ def filter_dessert(request):
 
 
 
-def logout(request):
-    request.session.flush()
-    return redirect('/')
-
 def create_recipe(request):
     if 'id' not in request.session:
         return redirect('/')
 
-    user = Users.objects.get(id=request.session['id'])
+    user = User.objects.get(id=request.session['userid'])
     context = {
         "User": user
     }
@@ -125,7 +177,7 @@ def add_recipe(request):
     fs = FileSystemStorage()
     user_pic = fs.save(pic.name, pic)
     url = fs.url(user_pic)
-    recipe = Recipes.objects.create(name=request.POST["Recipe_Name"],summary=request.POST["Description"],ingredients=request.POST["Ingredients"],steps=request.POST["Steps"], image=user_pic, owner=Users.objects.get(id=request.session['id']), is_dessert=False)
+    recipe = Recipes.objects.create(name=request.POST["Recipe_Name"],summary=request.POST["Description"],ingredients=request.POST["Ingredients"],steps=request.POST["Steps"], image=user_pic, owner=User.objects.get(id=request.session['userid']), is_dessert=False)
     # print(recipe.ingredients)
     return redirect(f'/recipe/info/{recipe.id}')
 
@@ -148,7 +200,7 @@ def recipe_info(request,id):
 
 
     context = {
-        'User': Users.objects.get(id=request.session['id']),
+        'User': User.objects.get(id=request.session['userid']),
         'recipe': Recipes.objects.get(id=id),
         'ingredients': ingredients,
         'summaries': summary,
@@ -193,7 +245,7 @@ def dish_of_the_week(request):
     reviews = top_recipe.reviews_of_recipe.all()
 
     context = {
-        'User': Users.objects.get(id=request.session['id']),
+        'User': User.objects.get(id=request.session['userid']),
         "recipes": top_recipe,
         "summary": summary,
         "ingredients": ingredients,
@@ -218,7 +270,7 @@ def delete_recipe(request,id):
 def edit_recipe(request,id):
     if 'id' not in request.session:
         return redirect('/')
-    user = Users.objects.get(id=request.session['id'])
+    user = User.objects.get(id=request.session['userid'])
     recipe = Recipes.objects.get(id=id)
     context = {
         "User": user,
@@ -264,7 +316,7 @@ def add_review_to_recipe(request,id):
         for key, value in errors.items():
             messages.error(request, value)
         return redirect(f'/recipe/info/{recipe.id}')
-    review = Reviews.objects.create(content=request.POST["Review"],rating=request.POST["Rating"],reviewer=Users.objects.get(id=request.session['id']),recipe=recipe)
+    review = Reviews.objects.create(content=request.POST["Review"],rating=request.POST["Rating"],reviewer=User.objects.get(id=request.session['userid']),recipe=recipe)
     return redirect(f'/recipe/info/{recipe.id}')
 
 def delete_review(request,review_id,recipe_id):
@@ -297,7 +349,7 @@ def desserts(request):
     top_recipes = sorted_recipes
 
     context = {
-        "User": Users.objects.get(id=request.session['id']),
+        "User": User.objects.get(id=request.session['userid']),
         "Top_Recipes": top_recipes
     }
     return render(request,'dessert.html',context)
@@ -306,7 +358,7 @@ def create_dessert(request):
     if 'id' not in request.session:
         return redirect('/')
 
-    user = Users.objects.get(id=request.session['id'])
+    user = User.objects.get(id=request.session['userid'])
     context = {
         "User": user
     }
@@ -331,7 +383,7 @@ def add_dessert(request):
     url = fs.url(user_pic)
     print(['*']*100)
     print(url)
-    recipe = Recipes.objects.create(name=request.POST["Recipe_Name"],summary=request.POST["Description"],ingredients=request.POST["Ingredients"],steps=request.POST["Steps"], image=user_pic, owner=Users.objects.get(id=request.session['id']),is_dessert=True)
+    recipe = Recipes.objects.create(name=request.POST["Recipe_Name"],summary=request.POST["Description"],ingredients=request.POST["Ingredients"],steps=request.POST["Steps"], image=user_pic, owner=User.objects.get(id=request.session['userid']),is_dessert=True)
     # print(recipe.ingredients)
     return redirect(f'/dessert/info/{recipe.id}')
 
@@ -354,7 +406,7 @@ def dessert_info(request,id):
 
 
     context = {
-        'User': Users.objects.get(id=request.session['id']),
+        'User': User.objects.get(id=request.session['userid']),
         'Dessert': recipe,
         'ingredients': ingredients,
         'summaries': summary,
@@ -377,7 +429,7 @@ def add_review_to_dessert(request,id):
         for key, value in errors.items():
             messages.error(request, value)
         return redirect(f'/dessert/info/{recipe.id}')
-    review = Reviews.objects.create(content=request.POST["Review"],rating=request.POST["Rating"],reviewer=Users.objects.get(id=request.session['id']),recipe=recipe)
+    review = Reviews.objects.create(content=request.POST["Review"],rating=request.POST["Rating"],reviewer=User.objects.get(id=request.session['userid']),recipe=recipe)
     return redirect(f'/dessert/info/{recipe.id}')
 
 def delete_dessert(request,id):
@@ -391,7 +443,7 @@ def delete_dessert(request,id):
 def edit_dessert(request,id):
     if 'id' not in request.session:
         return redirect('/')
-    user = Users.objects.get(id=request.session['id'])
+    user = User.objects.get(id=request.session['userid'])
     recipe = Recipes.objects.get(id=id)
     context = {
         "User": user,
@@ -464,7 +516,7 @@ def dessert_of_the_week(request):
     reviews = top_recipe.reviews_of_recipe.all()
 
     context = {
-        'User': Users.objects.get(id=request.session['id']),
+        'User': User.objects.get(id=request.session['userid']),
         "recipes": top_recipe,
         "summary": summary,
         "ingredients": ingredients,

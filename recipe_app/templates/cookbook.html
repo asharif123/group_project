@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/cookbook.css' %}">
+    <title>Cookbook</title>
+</head>
+<body>
+
+    <h1>Welcome to the CookBook!</h1>
+    <ul>
+        <li>
+            <a href="/cookbook">Home</a>
+        </li>
+        <li>
+            <a href="founders">Founders</a>
+        </li>
+        <li>
+            <a href="#">Careers</a>
+        </li>
+        <li>
+            <a href="userprofile/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
+        </li>
+        <li>
+            <a href="/logout">Logout</a>
+        </li>
+    </ul>   
+    
+    <form action="search">
+        <input type="text" placeholder="Search" name="" id="">
+        <!-- <textarea name="#" cols="25" rows="1" placeholder="Search"></textarea> -->
+        <input type="submit" value="Go!">
+
+    </form>
+
+    <div id="image1">
+        <a href="#"><h2>Popular Dishes</h2></a>
+    </div>
+
+    <div id="image2">
+        <a href="#"><h2>Recipe of the Week</h2></a>
+    </div>
+
+    <div id="image3">
+        <a href="#"><h2>Popular Desserts</h2></a>
+    </div>
+
+    <ul>
+        <li>
+            <a href="#">Advertisements</a>
+        </li>
+        <li>
+            <a href="privacypolicy">Privacy Policy</a>
+        </li>
+        <li>
+            <a href="#">Help</a>
+        </li>
+        <li>
+            <a href="#">About</a>
+        </li>
+        <li>
+            <a href="terms">Terms of Service</a>
+        </li>
+    </ul>
+</body>
+</html>

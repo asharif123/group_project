@@ -1,100 +1,58 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login and Registration</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="static/css/style.css">
     {% load static %}
-
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <title>Login and Registration</title>
 </head>
+<body>
+    <h1>Find Your Favorite Recipe, Or Share Your Own!</h1>
 
-<body class="main bg-light px-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-5">
-                <img src={% static "cooking.JPG" %}>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class = "{{message.tags}}" {% endif %}> {{message}} </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
-            </div>
-            <div class="col-4 py-3">
-                <div class="form-group row">
-                    <div class="col-sm-8 px-4">
-                        <h4 class="display-6">Add Account</h4>
-                    </div>
-                </div>
-    <!-- print out any errors if validation fails for either registeration or logging in -->
-                <form class="user" action="/register" method="post">
-                    {% csrf_token %}
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <input type="text" id="first_name" class="form-control form-control-sm"  placeholder="First Name" name="First_Name">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <input type="text" id="last_name" class="form-control form-control-sm"  placeholder="Last Name" name="Last_Name">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <input type="email" id="email" class="form-control form-control-sm" placeholder="Email" name="Email">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <input type="password" id="password" class="form-control form-control-sm" placeholder="Password" name="Password">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="form-group row">
-                        <div class="col-sm-8">
-                            <input type="password" id="confirm_password" class="form-control form-control-sm" placeholder="Confirm" name="Confirm">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="form-group row">
-                        <div class="col-sm-8 px-12">
-                            <button class="btn btn-primary rounded-pill rounded-lg" type="submit" data-automation-id="signin-submit-btn">Create Account</button>                </form>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
-
-            <div class="col-3 px-3 py-3">
-                <h4 class="display-6">Login</h4>
-                <form class="user" action="/login" method="post">
-                    {% csrf_token %}
-                    <div class="form-group row">
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control form-control-sm" placeholder="Email" name="Email">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-8">
-                            <input type="password" class="form-control form-control-sm rounded-plll" placeholder="Password" name="Password">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-dark rounded-pill rounded-sm">Login</button>
-                </form>
-            </div>
-        </div>
-        <footer class="my-5 pt-5 light text-muted text-center text-center">
-            <ul>
-                <li><a class="text-black" href="/advertisements">Advertisements</a>  <a href="/policy">Private Policy</a> <a href="/help">Help</a> <a href="/about">About</a> <a href="/policy">Visitor Agreement</a></li>
-                <li>Copyright &copy;  2020</li>
-            </ul>
-        </footer>
-
+    <div class="register">
+        <h2>Registration:</h2>
+        <form action="/registration" method="POST">
+            {% csrf_token %}
+            <p>First Name:</p>
+            <input type="text" name="first_name" placeholder="Enter First Name Here">
+            <p>Last Name:</p>
+            <input type="text" name="last_name" placeholder="Enter Last Name Here">
+            <p>Email:</p>
+            <input type="text" name="email" placeholder="Enter Email Here">
+            <p>Password:</p>
+            <input type="password" name="password" placeholder="Enter Password Here">
+            <p>Confirm Password:</p>
+            <input type="password" name="confirm_password" placeholder="Re-Enter Password Here">
+            <input type="submit" value="Register!">
+        </form>
     </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+
+    <div class="login">
+
+        <h2>Login:</h2>
+
+        <form action="/login" method="POST">
+            {% csrf_token %}
+
+            <p>Email:</p>
+            <input type="text" name="email" placeholder="Enter Email Here">
+            <p>Password:</p>
+            <input type="password" name="password" placeholder="Enter Password Here">
+
+            <input type="submit" value="Login!">
+        </form>
+
+    </div>  
+    
 </body>
 </html>

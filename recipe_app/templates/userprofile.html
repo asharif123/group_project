@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/userprofile.css' %}">
+    <title>User Profile</title>
+</head>
+<body>
+
+    <h1>User Profile</h1>
+    <ul>
+        <li>
+            <a href="/cookbook">Home</a>
+        </li>
+        <li>
+            <a href="founders">Founders</a>
+        </li>
+        <li>
+            <a href="#">Careers</a>
+        </li>
+
+        <li>
+            <a href="/logout">Logout</a>
+        </li>
+    </ul>    
+
+    <h2>User's Profile Picture</h2>
+    <img src="../static/IMG-5969.jpg" alt="Profile Picture">    
+    <h2>User's Full Name</h2>
+    <p>{{user.first_name}} {{user.last_name}}</p>
+    <h2>User's Email</h2>
+    <p>{{user.email}}</p>
+    <h2>When Did You Join?</h2>
+    <p>{{user.created_at}}</p>
+    
+</body>
+</html>

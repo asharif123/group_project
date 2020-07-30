@@ -1,0 +1,28 @@
+#founder1img{
+    width:440px; /*width of your image*/
+    height:280px; /*height of your image*/
+    background-image:url('../IMG-5969.JPG');
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: inline-block;
+    margin-left: 40px;
+}
+#content1{
+    display: inline-block;
+}
+#founder2img{
+    width:440px; /*width of your image*/
+    height:320px; /*height of your image*/
+    background-image:url('../20190907_213157.jpg');
+
+    background-position-y: 30%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: inline-block;
+    margin-left: 40px;
+}
+#content2{
+    display: inline-block;
+}

@@ -1,0 +1,50 @@
+#image1{
+    width:440px; /*width of your image*/
+    height:280px; /*height of your image*/
+    background-image:url('../ingredients.jpg');
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: inline-block;
+    margin-left: 40px;
+}
+
+#image2{
+    width:440px; /*width of your image*/
+    height:280px; /*height of your image*/
+    background-image:url('../people_eating.jpg');
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: inline-block;
+}
+
+#image3{
+    width:440px; /*width of your image*/
+    height:280px; /*height of your image*/
+    background-image:url('../cupcake.jpg');
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: inline-block;
+}
+h2{
+    background: rgba(245, 245, 245, 0.6);
+    text-align: center;
+    vertical-align: bottom;
+    margin-top: 232px;
+    padding: 10px 0px 10px 0px;
+    color: black;
+}
+a:visited, a:link{
+    color: black;
+}
+a:hover{
+    color: dodgerblue;
+}
+a{
+    text-decoration: none;
+}
