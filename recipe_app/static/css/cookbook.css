@@ -42,9 +42,9 @@ h2{
 a:visited, a:link{
     color: black;
 }
-a:hover{
+/* a:hover{
     color: dodgerblue;
-}
+} */
 a{
     text-decoration: none;
 }

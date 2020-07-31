@@ -19,30 +19,36 @@
 <body>
 
     <h1>Welcome to the CookBook!</h1>
-    <ul>
-        <li>
-            <a href="/cookbook" class="text-decoration-none">Home</a>
-        </li>
-        <li>
-            <a href="founders" class="text-decoration-none">Founders</a>
-        </li>
-        <li>
-            <a href="#" class="text-decoration-none">Careers</a>
-        </li>
-        <li>
-            <a href="userprofile/{{user.id}}" class="text-decoration-none">{{user.first_name}} {{user.last_name}}</a>
-        </li>
-        <li>
-            <a href="/logout" class="text-decoration-none">Logout</a>
-        </li>
-    </ul>   
-    
-    <form action="search">
-        <input type="text" placeholder="Search" name="" id="">
-        <!-- <textarea name="#" cols="25" rows="1" placeholder="Search"></textarea> -->
-        <input type="submit" value="Go!">
 
-    </form>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse">
+            <ul class="list-group list-group-horizontal navbar-nav mr-auto">
+                <li class="list-group-item nav-item active">
+                    <a href="/cookbook" class="nav-link">Home</a>
+                </li>
+                <li class="list-group-item nav-item active">
+                    <a href="founders" class="nav-link">Founders</a>
+                </li>
+                <li class="list-group-item nav-item active">
+                    <a href="#" class="nav-link">Careers</a>
+                </li>
+                <li class="list-group-item nav-item active">
+                    <a href="userprofile/{{user.id}}" class="nav-link">{{user.first_name}} {{user.last_name}}</a>
+                </li>
+                <li class="list-group-item nav-item active">
+                    <a href="/logout" class="nav-link">Logout</a>
+                </li>
+            </ul>
+            <form action="search" class="form-inline my-2 my-lg-0">
+                <input type="text" placeholder="Search" name="" id="" class="form-control mr-sm-2">
+                <!-- <textarea name="#" cols="25" rows="1" placeholder="Search"></textarea> -->
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <!-- <input type="submit" value="Go!"> -->
+            </form>
+
+        </div>
+    </nav><br>
+
 
     <div id="image1">
         <a href="/welcome" class="text-decoration-none"><h2>Popular Dishes</h2></a>
