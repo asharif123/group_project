@@ -134,8 +134,8 @@ def filter_recipe(request):
     return render(request,'filtered_recipes.html',context)
     
 def filter_dessert(request):
-    if 'userid' not in request.session:
-        return redirect('/')
+    # if 'userid' not in request.session:
+    #     return redirect('/')
     filtered_recipes = []
     user = User.objects.get(id=request.session['userid'])
     recipes = Recipes.objects.all()
@@ -200,7 +200,7 @@ def recipe_info(request,id):
 
 
     context = {
-        'User': User.objects.get(id=request.session['userid']),
+        'user': User.objects.get(id=request.session['userid']),
         'recipe': Recipes.objects.get(id=id),
         'ingredients': ingredients,
         'summaries': summary,
