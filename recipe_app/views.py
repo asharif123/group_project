@@ -4,6 +4,7 @@ from django.contrib import messages
 import bcrypt
 from .models import *
 
+for blah blah in blah
 ##############################################################################################################
 
 def index(request):

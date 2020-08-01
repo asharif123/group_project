@@ -5,103 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/cookbook.css' %}">
+
+    <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
     <title>Cookbook</title>
 </head>
 <body>
 
     <h1>Welcome to the CookBook!</h1>
-    <br>
-    <div class="col-12">
-        <div class="row">
-            <div class="col-8">
-                <nav class="navbar navbar-expand-lg rounded navbar-light bg-secondary">
-                    <span class="border border-dark"></span>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item active">
-                                <a class="nav-link text-white" href="/cookbook">Home</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link text-white" href="/founders">Founders</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link text-white" href="#">Careers</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link text-white" href="userprofile/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link text-white" href="/logout">Logout</a>
-                            </li>
 
-                        </ul>
-                    </div>
-                    </span>
-                </nav>
-            </div>
-            <form action="search">
-                <input type="text" placeholder="Search" name="" id="">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse">
+            <ul class="list-group list-group-horizontal navbar-nav mr-auto">
+                <li class="list-group-item nav-item active">
+                    <a href="/cookbook" class="nav-link">Home</a>
+                </li>
+                <li class="list-group-item nav-item active">
+                    <a href="founders" class="nav-link">Founders</a>
+                </li>
+                <li class="list-group-item nav-item active">
+                    <a href="#" class="nav-link">Careers</a>
+                </li>
+                <li class="list-group-item nav-item active">
+                    <a href="userprofile/{{user.id}}" class="nav-link">{{user.first_name}} {{user.last_name}}</a>
+                </li>
+                <li class="list-group-item nav-item active">
+                    <a href="/logout" class="nav-link">Logout</a>
+                </li>
+            </ul>
+            <form action="search" class="form-inline my-2 my-lg-0">
+                <input type="text" placeholder="Search" name="" id="" class="form-control mr-sm-2">
                 <!-- <textarea name="#" cols="25" rows="1" placeholder="Search"></textarea> -->
-                <input type="submit" value="Go!">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <!-- <input type="submit" value="Go!"> -->
             </form>
 
         </div>
-        
-    </div>
+    </nav><br>
 
-    {% comment %} <ul>
-        <li>
-            <a href="/cookbook">Home</a>
-        </li>
-        <li>
-            <a href="founders">Founders</a>
-        </li>
-        <li>
-            <a href="#">Careers</a>
-        </li>
-        <li>
-            <a href="userprofile/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
-        </li>
-        <li>
-            <a href="/logout">Logout</a>
-        </li>
-    </ul>   
-     {% endcomment %}
-    {% comment %} <form action="search">
-        <input type="text" placeholder="Search" name="" id="">
-        <!-- <textarea name="#" cols="25" rows="1" placeholder="Search"></textarea> -->
-        <input type="submit" value="Go!">
 
-    </form> {% endcomment %}
-    <br><br>
     <div id="image1">
-        <a href="/welcome"><h2>Popular Dishes</h2></a>
+        <a href="/welcome" class="text-decoration-none"><h2>Popular Dishes</h2></a>
     </div>
 
     <div id="image2">
-        <a href="/recipe/best"><h2>Recipe of the Week</h2></a>
+        <a href="/recipe/best" class="text-decoration-none"><h2>Recipe of the Week</h2></a>
     </div>
 
     <div id="image3">
-        <a href="/desserts/page"><h2>Popular Desserts</h2></a>
+        <a href="/desserts/page" class="text-decoration-none"><h2>Popular Desserts</h2></a>
     </div>
 
     {% comment %} <ul>
         <li>
-            <a href="#">Advertisements</a>
+            <a href="#" class="text-decoration-none">Advertisements</a>
         </li>
         <li>
-            <a href="privacypolicy">Privacy Policy</a>
+            <a href="privacypolicy" class="text-decoration-none">Privacy Policy</a>
         </li>
         <li>
-            <a href="#">Help</a>
+            <a href="#" class="text-decoration-none">Help</a>
         </li>
         <li>
-            <a href="#">About</a>
+            <a href="#" class="text-decoration-none">About</a>
         </li>
         <li>
-            <a href="terms">Terms of Service</a>
+            <a href="terms" class="text-decoration-none">Terms of Service</a>
         </li>
     </ul> {% endcomment %}
     <footer class="my-5 pt-5 light text-muted text-center text-center">
