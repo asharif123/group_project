@@ -350,7 +350,7 @@ def desserts(request):
     top_recipes = sorted_recipes
 
     context = {
-        "User": User.objects.get(id=request.session['userid']),
+        "user": User.objects.get(id=request.session['userid']),
         "Top_Recipes": top_recipes
     }
     return render(request,'dessert.html',context)

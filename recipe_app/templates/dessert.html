@@ -1,4 +1,5 @@
 
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,51 +11,44 @@
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
 <body class="dessert bg-light">
-    {% load static %}
     <div class="container">
         <div class="recipes col-12">
             <div class="navbar col-12">
-                <em><h1 class="active display-6">Welcome {{User.first_name}}!</h1></em>
-                {% comment %} <div class="row">
-                    <em><h1 class="active display-6">Welcome {{User.first_name}}!</h1></em>
-                </div> {% endcomment %}
-                <div class="col-5 text-center">
+                <em><h1 class="active display-6">Welcome {{user.first_name}}!</h1></em>
+                <div class="col-6 text-center">
                     <nav class="navbar navbar-expand-lg rounded navbar-light bg-secondary">
                         <span class="border border-dark"></span>
-                            <div class="collapse navbar-collapse" id="navbarNav">
-                                <ul class="navbar-nav">
-                                    {% comment %} <li class="nav-item active">
-                                        <a class="nav-link text-white" href="/desserts/page">Home</a>
-                                    </li> {% endcomment %}
-                                    <li class="nav-item active">
-                                        <a class="nav-link text-white" href="/welcome">Main Dishes</a>
-                                    </li>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="/cookbook">Home</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="/founders">Founders</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="#">Careers</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="/userprofile/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="/logout">Logout</a>
+                                </li>
 
-                                    <li class="nav-item active">
-                                        <a class="nav-link text-white" href="/contact/admins">Contact</a>
-                                    </li>
-                                    <li class="nav-item active">
-                                        <a class="nav-link text-white" href="/">Careers</a>
-                                    </li>
-                                    <li class="nav-item active">
-                                        <a class="nav-link text-white" href="/user/account">Profile</a>
-                                    </li>
-
-                                    <li class="nav-item active">
-                                        <a class="nav-link text-white" href="/logout">Logout</a>
-                                    </li>
-
-                                </ul>
-                            </div>
+                            </ul>
+                        </div>
                         </span>
                     </nav>
+
                     <br><br><br>
-                    <a class="btn btn-primary btn-lg" href="/desserts/create" role="button">Create Dessert</a>
+                    <a class="btn btn-primary btn-lg" href="/desserts/create" role="button">Create Recipe</a>
                     <br><br><br>
                 </div>
+
                 <div class="col-2">
                     <div class="col-12">
-                        <form action="/recipe/filter" method="post">
+                        <form action="/dessert/filter" method="post">
                             {% csrf_token %}
                             <input type="text" class="form-control form-control-sm rounded-plll" placeholder="Filter Recipes (Case Sensitive)" name="Filter">
                             <br>
@@ -85,7 +79,7 @@
                             <em><h6>Added On: {{recipe.created_at}}</h6></em>
                             <br><br>
 
-                            <a class="btn btn-success" href="/recipe/info/{{recipe.id}}" role="button">Full Dessert Information</a>
+                            <a class="btn btn-success" href="/dessert/info/{{recipe.id}}" role="button">Full Dessert Information</a>
                         </div>
                     </div>
                     <br> 
