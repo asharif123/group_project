@@ -6,28 +6,41 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/founders.css' %}">
     <title>Founders</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
 </head>
 <body>
 
     <h1>Founders/Creators of this Website:</h1>
-    <ul>
-        <li>
-            <a href="/cookbook">Home</a>
-        </li>
-        <li>
-            <a href="founders">Founders</a>
-        </li>
-        <li>
-            <a href="#">Careers</a>
-        </li>
-        <li>
-            <a href="#">{{user.first_name}} {{user.last_name}}</a>
-        </li>
-        <li>
-            <a href="/logout">Logout</a>
-        </li>
-    </ul>  
+        <div class="col-12">
+            <div class="navbar col-12">
+                <em><h1 class="active display-6">Welcome {{user.first_name}}!</h1></em>
+                <div class="col-6 text-center">
+                    <nav class="navbar navbar-expand-lg rounded navbar-light bg-secondary">
+                        <span class="border border-dark"></span>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="/cookbook">Home</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="#">Careers</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="/userprofile/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="/logout">Logout</a>
+                                </li>
 
+                            </ul>
+                        </div>
+                        </span>
+                    </nav>
+                </div>
+            </div>     
+        </div>               
+    <br><br>
     <div id="founder1">
         <div id="founder1img"></div>
             <div id="content1">
