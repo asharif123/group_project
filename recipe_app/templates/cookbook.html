@@ -9,13 +9,46 @@
     <title>Cookbook</title>
 </head>
 <body>
+    <div class="row">
+        <h1>Welcome to the CookBook!</h1>
+            <div class="col-8">
+                <nav class="navbar navbar-expand-lg rounded navbar-light bg-secondary">
+                    <span class="border border-dark text-right"></span>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav text-center">
+                            <li class="nav-item active">
+                                <h4><a class="nav-link text-white" href="/cookbook">Home</a></h4>
+                            </li>
+                            <li class="nav-item active">
+                                <h4><a class="nav-link text-white" href="/founders">Founders</a></h4>
+                            </li>
+                            <li class="nav-item active">
+                                <h4><a class="nav-link text-white" href="#">Careers</a></h4>
+                            </li>
+                            <li class="nav-item active">
+                                <h4><a class="nav-link text-white" href="userprofile/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></h4>
+                            </li>
+                            <li class="nav-item active">
+                                <h4><a class="nav-link text-white" href="/logout">Logout</a></h4>
+                            </li>
 
-    <h1>Welcome to the CookBook!</h1>
+                        </ul>
+                    </div>
+                    </span>
+                    <form action="search">
+                        <input type="text" placeholder="Search" name="" id="">
+                        <!-- <textarea name="#" cols="25" rows="1" placeholder="Search"></textarea> -->
+                        <input type="submit" value="Go!">
+                    </form>
+
+
+                </nav>
+            </div>
     <br>
     <div class="col-12">
         <div class="row">
             <div class="col-8">
-                <nav class="navbar navbar-expand-lg rounded navbar-light bg-secondary">
+                {% comment %} <nav class="navbar navbar-expand-lg rounded navbar-light bg-secondary">
                     <span class="border border-dark"></span>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
@@ -45,7 +78,7 @@
                     </form>
 
 
-                </nav>
+                </nav> {% endcomment %}
             </div>
             {% comment %} <form action="search">
                 <input type="text" placeholder="Search" name="" id="">
@@ -111,13 +144,15 @@
             <a href="terms">Terms of Service</a>
         </li>
     </ul> {% endcomment %}
-    <footer class="my-5 pt-5 light text-muted text-center text-center">
-        {% comment %} <ul> {% endcomment %}
-        <a class="text-black" href="#">Advertisements</a>  <a href="privacypolicy">Private Policy</a> <a href="#">Help</a> <a href="#">About</a> <a href="terms">Terms of Service</a>
-        <br>
-        Copyright &copy;  2020
-        {% comment %} </ul> {% endcomment %}
-    </footer>
+    <div class="col-12">
+        <footer class="my-5 pt-5 light text-muted text-center text-center">
+            {% comment %} <ul> {% endcomment %}
+            <a class="text-black" href="#">Advertisements</a>  <a href="privacypolicy">Private Policy</a> <a href="#">Help</a> <a href="#">About</a> <a href="terms">Terms of Service</a>
+            <br>
+            Copyright &copy;  2020
+            {% comment %} </ul> {% endcomment %}
+        </footer>
+    </div>
 
 </body>
 </html>
