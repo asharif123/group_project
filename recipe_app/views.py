@@ -156,7 +156,7 @@ def create_recipe(request):
 
     user = User.objects.get(id=request.session['userid'])
     context = {
-        "User": user
+        "user": user
     }
 
     return render(request, 'add_recipe.html', context)
