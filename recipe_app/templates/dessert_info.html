@@ -27,7 +27,7 @@
                         {% endfor %}
                     {% endif %} 
                     <div class="col-12">               
-                        <img src="{{Dessert.image.url}}" width="500" height="500">
+                        <img src="{{recipe.image.url}}" width="500" height="500">
                     </div>
                     <div class="col-12">
                         <br>
@@ -35,11 +35,14 @@
                         <br><br>
                         <em><h4>Average rating: {{rating}} stars</h4></em>
                         <br>
-                        <em><h6>Created by: {{Dessert.owner.first_name}} {{Dessert.owner.last_name}}</h6></em>
+                        <em><h6>Created by: {{recipe.owner.first_name}} {{recipe.owner.last_name}}</h6></em>
                         <br>
                         <em><u><h4>Description:</h4></u></em>
                         <br>
-                        <p>{{Dessert.summary}}
+                        {% for summary in summaries %}
+                            {{ summary }}
+                            <br>
+                        {% endfor %}
                         <br>
                         <em><u><h4>Ingredients: </h4></u></em>
                         <br>
@@ -70,33 +73,33 @@
                     <div class="col-12">
                     {% comment %} <div class="col-5"> {% endcomment %}
                         <nav class="navbar navbar-expand-lg rounded navbar-light bg-secondary">
-                            <span class="border border-dark"></span>
-                                <div class="collapse navbar-collapse" id="navbarNav">
-                                    <ul class="navbar-nav">
-                                        <li class="nav-item active">
-                                            <a class="nav-link text-white" href="/desserts/page">Home</a>
-                                        </li>
-                                        <li class="nav-item active">
-                                            <a class="nav-link text-white" href="/contact/admins">Contact</a>
-                                        </li>
-                                        <li class="nav-item active">
-                                            <a class="nav-link text-white" href="/">Careers</a>
-                                        </li>
-                                        <li class="nav-item active">
-                                            <a class="nav-link text-white" href="/user/account">Profile</a>
-                                        </li>
-                                        <li class="nav-item active">
-                                            <a class="nav-link text-white" href="/logout">Logout</a>
-                                        </li>
+                        <span class="border border-dark"></span>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="/desserts/page">Home</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="/founders">Founders</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="/#">Careers</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="/userprofile/{{User.id}}">{{User.first_name}} {{User.last_name}}</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="/logout">Logout</a>
+                                </li>
 
-                                    </ul>
-                                </div>
-                            </span>
-                        </nav>
+                            </ul>
+                        </div>
+
+                    </nav>
 
                     </div>
                     <br><br>
-                    <form action="/dessert/review/add/{{Dessert.id}}" method="post">
+                    <form action="/dessert/review/add/{{recipe.id}}" method="post">
                         {% csrf_token %}
 
                         <div class="form-group">
@@ -141,7 +144,7 @@
                                                 {% if User.id == review.reviewer.id %}
                                                     <div class="form-group row">
                                                         <div class="col-12">
-                                                            <a class="btn btn-sm btn-danger" href="/review/delete/{{review.id}}/{{Dessert.id}}" role="button">Delete Review</a>
+                                                            <a class="btn btn-sm btn-danger" href="/review/delete/{{review.id}}/{{recipe.id}}" role="button">Delete Review</a>
                                                         </div>
                                                     </div>
                                                 {% endif %}
