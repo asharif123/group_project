@@ -113,7 +113,7 @@ def welcome(request):
     top_recipes = sorted_recipes
 
     context = {
-        "User": user,
+        "user": user,
         "Top_Recipes": top_recipes
     }
     return render(request,'welcome.html', context)
