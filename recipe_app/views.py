@@ -407,7 +407,7 @@ def dessert_info(request,id):
 
     context = {
         'User': User.objects.get(id=request.session['userid']),
-        'Dessert': recipe,
+        'recipe': recipe,
         'ingredients': ingredients,
         'summaries': summary,
         'steps': steps,
