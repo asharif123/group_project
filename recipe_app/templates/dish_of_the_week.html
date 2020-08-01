@@ -16,6 +16,7 @@
                 <div class="col-6 px-3">
                     <div class="form-group row">
                         <em><h1 class="active">Dish of the week!</h1></em>
+                        {% comment %} <h1> Welcome {{User.first_name}} </h1> {% endcomment %}
                     </div>
 
                     {% if messages %}
@@ -69,32 +70,66 @@
                     {% comment %} <div class="col-5"> {% endcomment %}
                         <nav class="navbar navbar-expand-lg rounded navbar-light bg-secondary">
                             <span class="border border-dark"></span>
-                                <div class="collapse navbar-collapse" id="navbarNav">
-                                    <ul class="navbar-nav">
-                                        <li class="nav-item active">
-                                            <a class="nav-link text-white" href="/welcome">Home</a>
-                                        </li>
-                                        <li class="nav-item active">
-                                            <a class="nav-link text-white" href="/contact/admins">Contact</a>
-                                        </li>
-                                        <li class="nav-item active">
-                                            <a class="nav-link text-white" href="/">Careers</a>
-                                        </li>
-                                        <li class="nav-item active">
-                                            <a class="nav-link text-white" href="/user/account">Profile</a>
-                                        </li>
-                                        <li class="nav-item active">
-                                            <a class="nav-link text-white" href="/logout">Logout</a>
-                                        </li>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item active">
+                                        <a class="nav-link text-white" href="/cookbook">Home</a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a class="nav-link text-white" href="/founders">Founders</a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a class="nav-link text-white" href="#">Careers</a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a class="nav-link text-white" href="/userprofile/{{User.id}}">{{User.first_name}} {{User.last_name}}</a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a class="nav-link text-white" href="/logout">Logout</a>
+                                    </li>
 
-                                    </ul>
-                                </div>
+                                </ul>
+                            </div>
                             </span>
                         </nav>
+                        <br>
+                        <u><em><h3 class="text-center">Reviews:</h3></em></u>
+                        <br>
 
-                    </div>
+                        <div class="form-group row">
+                            {% for review in Reviews %}
+                                <br><br>
+                                <div class="card-deck col-12 bg-dark-rounded">
+                                    <br><br><br><br>
+                                    <div class="card mb-4 bg-light rounded border border-dark">
+
+                                        <div class="col-12">
+                                            <div class="col-12">
+                                                <b>Rating: {{review.rating}} stars</b>
+                                                <br><br>
+                                                <strong>{{review.reviewer.first_name}}</strong> says: <em>{{review.content}}</em>
+                                                <br><br>
+                                                <em>Posted On: {{review.created_at}}</em>
+                                                <br><br>
+                                                {% comment %} {% if User.id == review.reviewer.id %}
+                                                    <div class="form-group row">
+                                                        <div class="col-12">
+                                                            <a class="btn btn-sm btn-danger" href="/review/delete/{{review.id}}/{{recipe.id}}" role="button">Delete Review</a>
+                                                        </div>
+                                                    </div>
+                                                {% endif %} {% endcomment %}
+                                            </div>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br><br>
+                            {% endfor %}
+                        </div>
+                    </div>                    
+                </div>
                     <br><br>
-                    <form action="/review/add/{{recipes.id}}" method="post">
+                    {% comment %} <form action="/review/add/{{recipes.id}}" method="post">
                         {% csrf_token %}
 
                         <div class="form-group">
@@ -115,43 +150,8 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit Review</button>
-                    </form>
+                    </form> {% endcomment %}
                     <br>
-                    <div class="col-12">
-                        <u><em><h3 class="text-center">Reviews:</h3></em></u>
-                        <br>
-
-                        <div class="form-group row">
-                            {% for review in Reviews %}
-                                <br><br>
-                                <div class="card-deck col-12 bg-dark-rounded">
-                                    <br><br><br><br>
-                                    <div class="card mb-4 bg-light rounded border border-dark">
-
-                                        <div class="col-12">
-                                            <div class="col-12">
-                                                <b>Rating: {{review.rating}} stars</b>
-                                                <br><br>
-                                                <strong>{{review.reviewer.first_name}}</strong> says: <em>{{review.content}}</em>
-                                                <br><br>
-                                                <em>Posted On: {{review.created_at}}</em>
-                                                <br><br>
-                                                {% if User.id == review.reviewer.id %}
-                                                    <div class="form-group row">
-                                                        <div class="col-12">
-                                                            <a class="btn btn-sm btn-danger" href="/review/delete/{{review.id}}/{{recipe.id}}" role="button">Delete Review</a>
-                                                        </div>
-                                                    </div>
-                                                {% endif %}
-                                            </div>
-                                            <br>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br><br>
-                            {% endfor %}
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
