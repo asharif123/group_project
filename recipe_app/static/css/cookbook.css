@@ -52,6 +52,7 @@ a h2:hover{
 a:hover{
     text-decoration: underline;
 }
+
 #image1 a h2{
     margin-top: 222px;
     margin-bottom: 0px;
@@ -79,4 +80,7 @@ a:hover{
     background-repeat: no-repeat;
     background-size: cover;
     /* background-color: #dbd7d6; */
+}
+footer a{
+    color: black;
 }
