@@ -7,7 +7,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     display: inline-block;
-    /* margin-left: 40px; */
+    margin-left: 13px;
 }
 
 #image2{
@@ -59,6 +59,9 @@ a{
     margin-bottom: 0px;
 }
 #navbar{
-    background: rgb(103,103,103);
-    background: linear-gradient(360deg, rgba(103,103,103,1) 0%, rgba(0,0,0,1) 50%, rgba(103,103,103,1) 100%);
+    background: rgb(33,33,33);
+    background: linear-gradient(360deg, rgba(33,33,33,1) 0%, rgba(52,52,52,1) 50%, rgba(33,33,33,1) 100%);
+}
+.carousel-item{
+    height: 630px;
 }
