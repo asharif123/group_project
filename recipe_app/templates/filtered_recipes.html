@@ -14,31 +14,32 @@
         <div class="recipes col-12">
             <div class="navbar col-12">
                 <em><h1 class="active display-6">Welcome {{User.first_name}}!</h1></em>
-                <div class="col-5 text-center">
+                <div class="col-6 text-center">
                     <nav class="navbar navbar-expand-lg rounded navbar-light bg-secondary">
                         <span class="border border-dark"></span>
-                            <div class="collapse navbar-collapse" id="navbarNav">
-                                <ul class="navbar-nav">
-                                    <li class="nav-item active">
-                                        <a class="nav-link text-white" href="/welcome">Home</a>
-                                    </li>
-                                    <li class="nav-item active">
-                                        <a class="nav-link text-white" href="/contact/admins">Contact</a>
-                                    </li>
-                                    <li class="nav-item active">
-                                        <a class="nav-link text-white" href="/">Careers</a>
-                                    </li>
-                                    <li class="nav-item active">
-                                        <a class="nav-link text-white" href="/user/account">Profile</a>
-                                    </li>
-                                    <li class="nav-item active">
-                                        <a class="nav-link text-white" href="/logout">Logout</a>
-                                    </li>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item active">
+                                    <h6><a class="nav-link text-white" href="/cookbook">Home</a></h6>
+                                </li>
+                                <li class="nav-item active">
+                                    <h6><a class="nav-link text-white" href="/founders">Founders</a></h6>
+                                </li>
+                                <li class="nav-item active">
+                                    <h6><a class="nav-link text-white" href="#">Careers</a></h6>
+                                </li>
+                                <li class="nav-item active">
+                                    <h6><a class="nav-link text-white" href="/userprofile/{{User.id}}">{{User.first_name}} {{User.last_name}}</a></h6>
+                                </li>
+                                <li class="nav-item active">
+                                    <h6><a class="nav-link text-white" href="/logout">Logout</a></h6>
+                                </li>
 
-                                </ul>
-                            </div>
+                            </ul>
+                        </div>
                         </span>
                     </nav>
+
                     <br><br><br>
                     <a class="btn btn-primary btn-lg" href="/recipe/create" role="button">Create Recipe</a>
                     <br><br><br>
