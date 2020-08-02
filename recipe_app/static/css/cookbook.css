@@ -7,7 +7,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     display: inline-block;
-    margin-left: 40px;
+    margin-left: 13px;
 }
 
 #image2{
@@ -39,12 +39,44 @@ h2{
     color: black;
     margin-top: 50px;
 }
+
 a:visited, a:link{
     color: black;
 }
-/* a:hover{
-    color: dodgerblue;
-} */
 a{
     text-decoration: none;
+}
+a h2:hover{
+    text-decoration: underline;
+}
+a:hover{
+    text-decoration: underline;
+}
+#image1 a h2{
+    margin-top: 222px;
+    margin-bottom: 0px;
+}
+#image2 a h2{
+    margin-top: 222px;
+    margin-bottom: 0px;
+}
+#image3 a h2{
+    margin-top: 222px;
+    margin-bottom: 0px;
+}
+#navbar{
+    background: rgb(33,33,33);
+    background: linear-gradient(360deg, rgba(33,33,33,1) 0%, rgba(52,52,52,1) 50%, rgba(33,33,33,1) 100%);
+    border-radius: 5px;
+}
+.carousel-item{
+    height: 630px;
+}
+.container{
+    background-image:url('../background2.jpg');
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-color: #dbd7d6; */
 }
