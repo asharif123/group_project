@@ -113,7 +113,7 @@ def welcome(request):
     top_recipes = sorted_recipes
 
     context = {
-        "User": user,
+        "user": user,
         "Top_Recipes": top_recipes
     }
     return render(request,'welcome.html', context)
@@ -156,7 +156,7 @@ def create_recipe(request):
 
     user = User.objects.get(id=request.session['userid'])
     context = {
-        "User": user
+        "user": user
     }
 
     return render(request, 'add_recipe.html', context)
@@ -349,7 +349,7 @@ def desserts(request):
     top_recipes = sorted_recipes
 
     context = {
-        "User": User.objects.get(id=request.session['userid']),
+        "user": User.objects.get(id=request.session['userid']),
         "Top_Recipes": top_recipes
     }
     return render(request,'dessert.html',context)
@@ -407,7 +407,7 @@ def dessert_info(request,id):
 
     context = {
         'User': User.objects.get(id=request.session['userid']),
-        'Dessert': recipe,
+        'recipe': recipe,
         'ingredients': ingredients,
         'summaries': summary,
         'steps': steps,

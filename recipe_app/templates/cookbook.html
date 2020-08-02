@@ -17,34 +17,82 @@
     <title>Cookbook</title>
 </head>
 <body>
+    <div class="row">
+        <h1>Welcome to the CookBook!</h1>
+            <div class="col-8">
+                <nav class="navbar navbar-expand-lg rounded navbar-light bg-secondary">
+                    <span class="border border-dark text-right"></span>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav text-center">
+                            <li class="nav-item active">
+                                <h4><a class="nav-link text-white" href="/cookbook">Home</a></h4>
+                            </li>
+                            <li class="nav-item active">
+                                <h4><a class="nav-link text-white" href="/founders">Founders</a></h4>
+                            </li>
+                            <li class="nav-item active">
+                                <h4><a class="nav-link text-white" href="#">Careers</a></h4>
+                            </li>
+                            <li class="nav-item active">
+                                <h4><a class="nav-link text-white" href="userprofile/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></h4>
+                            </li>
+                            <li class="nav-item active">
+                                <h4><a class="nav-link text-white" href="/logout">Logout</a></h4>
+                            </li>
 
-    <h1>Welcome to the CookBook!</h1>
+                        </ul>
+                    </div>
+                    </span>
+                    <form action="search">
+                        <input type="text" placeholder="Search" name="" id="">
+                        <!-- <textarea name="#" cols="25" rows="1" placeholder="Search"></textarea> -->
+                        <input type="submit" value="Go!">
+                    </form>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="collapse navbar-collapse">
-            <ul class="list-group list-group-horizontal navbar-nav mr-auto">
-                <li class="list-group-item nav-item active">
-                    <a href="/cookbook" class="nav-link">Home</a>
-                </li>
-                <li class="list-group-item nav-item active">
-                    <a href="founders" class="nav-link">Founders</a>
-                </li>
-                <li class="list-group-item nav-item active">
-                    <a href="#" class="nav-link">Careers</a>
-                </li>
-                <li class="list-group-item nav-item active">
-                    <a href="userprofile/{{user.id}}" class="nav-link">{{user.first_name}} {{user.last_name}}</a>
-                </li>
-                <li class="list-group-item nav-item active">
-                    <a href="/logout" class="nav-link">Logout</a>
-                </li>
-            </ul>
-            <form action="search" class="form-inline my-2 my-lg-0">
-                <input type="text" placeholder="Search" name="" id="" class="form-control mr-sm-2">
+
+                </nav>
+            </div>
+    <br>
+    <div class="col-12">
+        <div class="row">
+            <div class="col-8">
+                {% comment %} <nav class="navbar navbar-expand-lg rounded navbar-light bg-secondary">
+                    <span class="border border-dark"></span>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link text-white" href="/cookbook">Home</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link text-white" href="/founders">Founders</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link text-white" href="#">Careers</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link text-white" href="userprofile/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link text-white" href="/logout">Logout</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    </span>
+                    <form action="search">
+                        <input type="text" placeholder="Search" name="" id="">
+                        <!-- <textarea name="#" cols="25" rows="1" placeholder="Search"></textarea> -->
+                        <input type="submit" value="Go!">
+                    </form>
+
+
+                </nav> {% endcomment %}
+            </div>
+            {% comment %} <form action="search">
+                <input type="text" placeholder="Search" name="" id="">
                 <!-- <textarea name="#" cols="25" rows="1" placeholder="Search"></textarea> -->
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                <!-- <input type="submit" value="Go!"> -->
-            </form>
+                <input type="submit" value="Go!">
+            </form> {% endcomment %}
 
         </div>
     </nav><br>
@@ -62,7 +110,7 @@
         <a href="/desserts/page" class="text-decoration-none"><h2>Popular Desserts</h2></a>
     </div>
 
-    <ul>
+    {% comment %} <ul>
         <li>
             <a href="#" class="text-decoration-none">Advertisements</a>
         </li>
@@ -78,6 +126,16 @@
         <li>
             <a href="terms" class="text-decoration-none">Terms of Service</a>
         </li>
-    </ul>
+    </ul> {% endcomment %}
+    <div class="col-12">
+        <footer class="my-5 pt-5 light text-muted text-center text-center">
+            {% comment %} <ul> {% endcomment %}
+            <a class="text-black" href="#">Advertisements</a>  <a href="privacypolicy">Private Policy</a> <a href="#">Help</a> <a href="#">About</a> <a href="terms">Terms of Service</a>
+            <br>
+            Copyright &copy;  2020
+            {% comment %} </ul> {% endcomment %}
+        </footer>
+    </div>
+
 </body>
 </html>
