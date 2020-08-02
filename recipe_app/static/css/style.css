@@ -9,9 +9,12 @@
 .dessert{
   background-image: url("/static/coconut_cream.JPG");
   background-size: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
   
   
-  }recipe_app\static\cut_vegetables.JPG
+  }
   
   
 /* .welcome{

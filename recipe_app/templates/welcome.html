@@ -13,32 +13,33 @@
     <div class="container">
         <div class="recipes col-12">
             <div class="navbar col-12">
-                <em><h1 class="active display-6">Welcome {{User.first_name}}!</h1></em>
-                <div class="col-5 text-center">
+                <em><h1 class="active display-6">Welcome {{user.first_name}}!</h1></em>
+                <div class="col-6 text-center">
                     <nav class="navbar navbar-expand-lg rounded navbar-light bg-secondary">
                         <span class="border border-dark"></span>
-                            <div class="collapse navbar-collapse" id="navbarNav">
-                                <ul class="navbar-nav">
-                                    <li class="nav-item active">
-                                        <a href="/cookbook">Home</a>
-                                    </li>
-                                    <li class="nav-item active">
-                                        <a href="founders">Founders</a>
-                                    </li>
-                                    <li class="nav-item active">
-                                         <a href="#">Careers</a>
-                                    </li>
-                                    <li class="nav-item active">
-                                         <a href="userprofile/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
-                                    </li>
-                                    <li class="nav-item active">
-                                        <a href="/logout">Logout</a>
-                                    </li>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="/cookbook">Home</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="/founders">Founders</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="#">Careers</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="userprofile/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="/logout">Logout</a>
+                                </li>
 
-                                </ul>
-                            </div>
+                            </ul>
+                        </div>
                         </span>
                     </nav>
+
                     <br><br><br>
                     <a class="btn btn-primary btn-lg" href="/recipe/create" role="button">Create Recipe</a>
                     <br><br><br>
@@ -91,7 +92,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>    
     </div>
     <footer class="my-5 pt-5 light text-center">
-        <a class="btn btn-primary btn-lg" href="/recipe/best" role="button">Dish of the week</a>
         <br><br>
         <ul>
             <li><a href="/advertisements">Advertisements</a>  <a href="/policy">Private Policy</a> <a href="/help">Help</a> <a href="/about">About</a> <a href="/policy">Visitor Agreement</a></li>
