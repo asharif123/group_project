@@ -52,6 +52,7 @@ a h2:hover{
 a:hover{
     text-decoration: underline;
 }
+
 #image1 a h2{
     margin-top: 222px;
     margin-bottom: 0px;
@@ -60,10 +61,12 @@ a:hover{
     margin-top: 222px;
     margin-bottom: 0px;
 }
+
 #image3 a h2{
     margin-top: 222px;
     margin-bottom: 0px;
 }
+
 #navbar{
     background: rgb(33,33,33);
     background: linear-gradient(360deg, rgba(33,33,33,1) 0%, rgba(52,52,52,1) 50%, rgba(33,33,33,1) 100%);
@@ -72,6 +75,7 @@ a:hover{
 .carousel-item{
     height: 630px;
 }
+
 .container{
     background-image:url('../background2.jpg');
 
@@ -79,4 +83,7 @@ a:hover{
     background-repeat: no-repeat;
     background-size: cover;
     /* background-color: #dbd7d6; */
+}
+footer a{
+    color: black;
 }
