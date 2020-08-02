@@ -1,5 +1,5 @@
 #image1{
-    width:440px; /*width of your image*/
+    width:400px; /*width of your image*/
     height:280px; /*height of your image*/
     background-image:url('../ingredients.jpg');
 
@@ -11,7 +11,7 @@
 }
 
 #image2{
-    width:440px; /*width of your image*/
+    width:400px; /*width of your image*/
     height:280px; /*height of your image*/
     background-image:url('../people_eating.jpg');
 
@@ -22,7 +22,7 @@
 }
 
 #image3{
-    width:440px; /*width of your image*/
+    width:400px; /*width of your image*/
     height:280px; /*height of your image*/
     background-image:url('../cupcake.jpg');
 
