@@ -5,26 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/userprofile.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
     <title>User Profile</title>
 </head>
 <body>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                                <nav class="navbar navbar-expand-lg rounded navbar-light bg-secondary">
+                                <span class="border border-dark"></span>
+                                <div class="collapse navbar-collapse text-center" id="navbarNav">
+                                    <ul class="navbar-nav text-center">
+                                        <li class="nav-item active text-center">
+                                            <h4><a class="nav-link text-white" href="/cookbook">Home</a></h4>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <h4><a class="nav-link text-white" href="/founders">Founders</a></h4>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <h4><a class="nav-link text-white" href="#">Careers</a></h4>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <h4><a class="nav-link text-white" href="/userprofile/{{User.id}}">{{User.first_name}} {{User.last_name}}</a></h4>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <h4><a class="nav-link text-white" href="/logout">Logout</a></h4>
+                                        </li>
 
-    <h1>User Profile</h1>
-    <ul>
-        <li>
-            <a href="/cookbook">Home</a>
-        </li>
-        <li>
-            <a href="founders">Founders</a>
-        </li>
-        <li>
-            <a href="#">Careers</a>
-        </li>
-
-        <li>
-            <a href="/logout">Logout</a>
-        </li>
-    </ul>    
+                                    </ul>
+                                </div>
+                                </span>
+                            </nav>
+                        </div>
+                    </div>
 
     <h2>User's Profile Picture</h2>
     <img src="../static/IMG-5969.jpg" alt="Profile Picture">    
