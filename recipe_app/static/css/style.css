@@ -5,7 +5,8 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
-.dessert{
+
+  .dessert{
 
   background-image: url("/static/small_cakes.JPG");
   background-size: 100%;
