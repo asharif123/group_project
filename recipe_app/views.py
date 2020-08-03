@@ -209,7 +209,9 @@ def recipe_info(request,id):
         "rating": average_rating
     }
 
+    # return render(request,'recipe_info.html',context)
     return render(request,'recipe_info.html',context)
+
 
 def dish_of_the_week(request):
     if 'userid' not in request.session:
@@ -318,7 +320,13 @@ def add_review_to_recipe(request,id):
             messages.error(request, value)
         return redirect(f'/recipe/info/{recipe.id}')
     review = Reviews.objects.create(content=request.POST["Review"],rating=request.POST["Rating"],reviewer=User.objects.get(id=request.session['userid']),recipe=recipe)
+    all_reviews = Reviews.objects.all()
     return redirect(f'/recipe/info/{recipe.id}')
+    # context = {
+    #     "Reviews": review,
+    #     "All_Reviews": all_reviews,
+    # }
+    # return render(request,'add_review_ajax.html',context)
 
 def delete_review(request,review_id,recipe_id):
     if 'userid' not in request.session:

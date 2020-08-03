@@ -43,9 +43,9 @@
                     <a class="btn btn-primary btn-lg" href="/recipe/create" role="button">Create Recipe</a>
                     <br><br><br>
                 </div>
-                <div class="col-2">
+                <div class="col-2" id="recipe_filter">
                     <div class="col-12">
-                        <form action="/recipe/filter" method="post">
+                        <form action="/recipe/filter" method="post" id="recipe_filter">
                             {% csrf_token %}
                             <input type="text" class="form-control form-control-sm rounded-plll" placeholder="Filter Recipes" name="Filter">
                             <br>
@@ -53,7 +53,7 @@
 
                         </form>
                         <br>
-                        <a href="/welcome" class="btn btn-sm btn-danger" role="button" aria-pressed="true">Clear Filter</a>
+                        <a href="/welcome" class="btn btn-sm btn-danger" role="button" id="clear_recipe" aria-pressed="true">Clear Filter</a>
                     </div>
                 </div>
             </div>                    

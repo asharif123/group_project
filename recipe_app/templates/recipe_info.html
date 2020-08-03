@@ -8,7 +8,22 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="style/css/style.css">
         {% load static %}
+        {% comment %} <script>
+            $(document).ready(function(){
 
+                $('#review').submit(function(e){
+                    e.preventDefault()
+                    $.ajax({
+                        url: "/review/add/{{recipe.id}}",
+                        method: "POST",
+                        data: $(this).serialize(),
+                        success: function(serverResponse){
+                            console.log(serverResponse);
+
+                        }
+                    })
+                })
+        </script> {% endcomment %}
     </head>
     <body class="bg-light">
         <div class="container">
@@ -96,34 +111,37 @@
 
                     </div>
                     <br><br>
-                    <form action="/review/add/{{recipe.id}}" method="post">
-                        {% csrf_token %}
+                    <div>
+                        <form action="/review/add/{{recipe.id}}" method="post" id="review">
+    
+                            {% csrf_token %}
 
-                        <div class="form-group">
-                            <em><h4>Add Review: </h4></em>
-                            <br>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" name="Review" rows="3"></textarea>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-12">
-                                <label for="Rating">Rating:</label>
-                                <select name="Rating" id="Rating">
-                                    <option value="1">1 - Terrible</option>
-                                    <option value="2">2 - Bad</option>
-                                    <option value="3">3 - Marginal</option>
-                                    <option value="4">4 - Good</option>
-                                    <option value="5">5 - Excellent</option>                            
-                                </select>
+                            <div class="form-group">
+                                <em><h4>Add Review: </h4></em>
+                                <br>
+                                <textarea class="form-control" class="content" id="exampleFormControlTextarea1" name="Review" rows="3"></textarea>
                             </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit Review</button>
-                    </form>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <label for="Rating">Rating:</label>
+                                    <select name="Rating" id="Rating" class="content">
+                                        <option value="1">1 - Terrible</option>
+                                        <option value="2">2 - Bad</option>
+                                        <option value="3">3 - Marginal</option>
+                                        <option value="4">4 - Good</option>
+                                        <option value="5">5 - Excellent</option>                            
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit Review</button>
+                        </form>
+                    </div>
                     <br>
                     <div class="col-12">
                         <u><em><h3 class="text-center">Reviews:</h3></em></u>
                         <br>
 
-                        <div class="form-group row">
+                        <div class="form-group row" id="add_review">
                             {% for review in Reviews %}
                                 <br><br>
                                 <div class="card-deck col-12 bg-dark-rounded">
