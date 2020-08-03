@@ -1,6 +1,6 @@
 #image1{
-    width:440px; /*width of your image*/
-    height:280px; /*height of your image*/
+    width:360px; 
+    /* height:280px;  */
     background-image:url('../ingredients.jpg');
 
     background-position: center;
@@ -11,8 +11,8 @@
 }
 
 #image2{
-    width:440px; /*width of your image*/
-    height:280px; /*height of your image*/
+    width:360px; /*width of your image*/
+    /* height:280px;  */
     background-image:url('../people_eating.jpg');
 
     background-position: center;
@@ -22,8 +22,8 @@
 }
 
 #image3{
-    width:440px; /*width of your image*/
-    height:280px; /*height of your image*/
+    width:360px; /*width of your image*/
+    /* height:280px;  */
     background-image:url('../cupcake.jpg');
 
     background-position: center;
