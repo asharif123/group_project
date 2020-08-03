@@ -162,7 +162,7 @@
                                                 {% if user.id == review.reviewer.id %}
                                                     <div class="form-group row">
                                                         <div class="col-12">
-                                                            <a class="btn btn-sm btn-danger" href="/review/delete/{{review.id}}/{{recipe.id}}" role="button">Delete Review</a>
+                                                            <a class="btn btn-sm btn-danger" href="/review/delete/{{review.id}}/{{recipe.id}}" role="button" id="delete_review">Delete Review</a>
                                                         </div>
                                                     </div>
                                                 {% endif %}
