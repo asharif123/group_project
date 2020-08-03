@@ -1,0 +1,30 @@
+                        <div class="form-group row" id="add_review">
+                            {% for review in Reviews %}
+                                <br><br>
+                                <div class="card-deck col-12 bg-dark-rounded">
+                                    <br><br><br><br>
+                                    <div class="card mb-4 bg-light rounded border border-dark">
+
+                                        <div class="col-12">
+                                            <div class="col-12">
+                                                <b>Rating: {{review.rating}} stars</b>
+                                                <br><br>
+                                                <strong>{{review.reviewer.first_name}}</strong> says: <em>{{review.content}}</em>
+                                                <br><br>
+                                                <em>Posted On: {{review.created_at}}</em>
+                                                <br><br>
+                                                {% if user.id == review.reviewer.id %}
+                                                    <div class="form-group row">
+                                                        <div class="col-12">
+                                                            <a class="btn btn-sm btn-danger" href="/review/delete/{{review.id}}/{{recipe.id}}" role="button">Delete Review</a>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br><br>
+                            {% endfor %}
+                        </div>
