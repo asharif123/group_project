@@ -312,7 +312,7 @@ def update_recipe(request,id):
 def add_review_to_recipe(request):
     if 'userid' not in request.session:
         return redirect('/')
-
+    user = User.objects.get(id=request.session['userid'])
     recipe = Recipes.objects.get(id=request.POST["recipe_id"])
     errors = Reviews.objects.reviews_validator(request.POST)
     if len(errors) > 0:
@@ -321,11 +321,12 @@ def add_review_to_recipe(request):
         return redirect(f'/recipe/info/{recipe.id}')
     review = Reviews.objects.create(content=request.POST["Review"],rating=request.POST["Rating"],reviewer=User.objects.get(id=request.session['userid']),recipe=recipe)
     all_reviews = Reviews.objects.all()
-    return redirect(f'/recipe/info/{recipe.id}')
-    # context = {
-    #     "Reviews": recipe.reviews_of_recipe.all()
-    # }
-    # return render(request,'add_review_ajax.html',context)
+    # return redirect(f'/recipe/info/{recipe.id}')
+    context = {
+        "Reviews": recipe.reviews_of_recipe.all().order_by('-created_at'),
+        "User": user
+    }
+    return render(request,'add_review_ajax.html',context)
 
 def delete_review(request,review_id,recipe_id):
     if 'userid' not in request.session:
@@ -426,11 +427,11 @@ def dessert_info(request,id):
 
     return render(request,'dessert_info.html',context)
 
-def add_review_to_dessert(request,id):
+def add_review_to_dessert(request):
     if 'userid' not in request.session:
         return redirect('/')
 
-    recipe = Recipes.objects.get(id=id)
+    recipe = Recipes.objects.get(id=request.POST["recipe_id"])
     print(['*']*100)
     errors = Reviews.objects.reviews_validator(request.POST)
     if len(errors) > 0:
@@ -438,7 +439,11 @@ def add_review_to_dessert(request,id):
             messages.error(request, value)
         return redirect(f'/dessert/info/{recipe.id}')
     review = Reviews.objects.create(content=request.POST["Review"],rating=request.POST["Rating"],reviewer=User.objects.get(id=request.session['userid']),recipe=recipe)
-    return redirect(f'/dessert/info/{recipe.id}')
+    # return redirect(f'/dessert/info/{recipe.id}')
+    context = {
+        "Reviews": recipe.reviews_of_recipe.all()
+    }
+    render(request,'add_review_ajax.html',context)
 
 def delete_dessert(request,id):
     if 'userid' not in request.session:

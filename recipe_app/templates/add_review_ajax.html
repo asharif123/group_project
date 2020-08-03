@@ -7,13 +7,21 @@
 
                                         <div class="col-12">
                                             <div class="col-12">
+                                                {% comment %} {% if messages %}
+                                                    <br>
+                                                    {% for message in messages %}
+                                                        <ul>   
+                                                            <p><li class="text text-danger">{{ message }}</li></strong></p>
+                                                        </ul>    
+                                                    {% endfor %}
+                                                {% endif %}  {% endcomment %}
                                                 <b>Rating: {{review.rating}} stars</b>
                                                 <br><br>
                                                 <strong>{{review.reviewer.first_name}}</strong> says: <em>{{review.content}}</em>
                                                 <br><br>
                                                 <em>Posted On: {{review.created_at}}</em>
                                                 <br><br>
-                                                {% if user.id == review.reviewer.id %}
+                                                {% if User.id == review.reviewer.id %}
                                                     <div class="form-group row">
                                                         <div class="col-12">
                                                             <a class="btn btn-sm btn-danger" href="/review/delete/{{review.id}}/{{recipe.id}}" role="button">Delete Review</a>

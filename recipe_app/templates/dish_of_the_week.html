@@ -17,14 +17,6 @@
                         {% comment %} <h1> Welcome {{User.first_name}} </h1> {% endcomment %}
                     </div>
 
-                    {% if messages %}
-                        <br>
-                        {% for message in messages %}
-                            <ul>   
-                                 <h4><li class="text text-danger">{{ message }}</li></strong></h4>
-                            </ul>    
-                        {% endfor %}
-                    {% endif %} 
                     <div class="col-12">               
                         <img src="{{recipes.image.url}}" width="500" height="500">
                     </div>

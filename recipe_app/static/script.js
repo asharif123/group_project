@@ -39,19 +39,20 @@ $(document).ready(function(){
         })
     })
 
-    // $('#review').submit(function(e){
-    //     e.preventDefault()
-    //     $.ajax({
-    //         url: "/review/add",
-    //         method: "POST",
-    //         data: $(this).serialize(),
-    //         success: function(serverResponse){
-    //             console.log(serverResponse)
-    //             $('#add_review').html(serverResponse)
+    $('#review').submit(function(e){
+        e.preventDefault()
+        $.ajax({
+            url: "/review/add",
+            method: "POST",
+            data: $(this).serialize(),
+            success: function(serverResponse){
+                console.log(serverResponse)
+                $('#add_review').html(serverResponse);
+                $('.content').trigger('reset');
 
 
-    //         }
-    //     })
-    // })
+            }
+        })
+    })
 
 })

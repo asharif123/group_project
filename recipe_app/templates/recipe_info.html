@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="static/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
 
         {% comment %} <script>
             $(document).ready(function(){
@@ -33,15 +33,16 @@
                         <em><h1 class="active">Welcome {{user.first_name}}!</h1></em>
                     </div>
 
-                    {% if messages %}
-                        <br>
-                        {% for message in messages %}
-                            <ul>   
-                                 <h4><li class="text text-danger">{{ message }}</li></strong></h4>
-                            </ul>    
-                        {% endfor %}
-                    {% endif %} 
-                    <div class="col-12">               
+                    <div class="col-12">
+                        {% comment %} {% if messages %}
+                            <br>
+                            {% for message in messages %}
+                                <ul>   
+                                    <p><li class="text text-danger">{{ message }}</li></strong></p>
+                                </ul>    
+                            {% endfor %}
+                        {% endif %}  {% endcomment %}
+               
                         <img src="{{recipe.image.url}}" width="500" height="500">
                     </div>
                     <div class="col-12">
