@@ -26,7 +26,7 @@ urlpatterns = [
     path('recipe/delete/<int:id>', views.delete_recipe),
     path('recipe/edit/<int:id>', views.edit_recipe),
     path('recipe/update/<int:id>', views.update_recipe),
-    path('review/add/<int:id>', views.add_review_to_recipe),
+    path('review/add', views.add_review_to_recipe),
     path('review/delete/<int:review_id>/<int:recipe_id>', views.delete_review),
     path('recipe/filter', views.filter_recipe),
     # DESSERTS

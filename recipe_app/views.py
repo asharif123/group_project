@@ -309,11 +309,11 @@ def update_recipe(request,id):
         recipe_to_update.save()
         return redirect(f'/recipe/info/{recipe_to_update.id}')
 
-def add_review_to_recipe(request,id):
+def add_review_to_recipe(request):
     if 'userid' not in request.session:
         return redirect('/')
 
-    recipe = Recipes.objects.get(id=id)
+    recipe = Recipes.objects.get(id=request.POST["recipe_id"])
     errors = Reviews.objects.reviews_validator(request.POST)
     if len(errors) > 0:
         for key, value in errors.items():
@@ -323,8 +323,7 @@ def add_review_to_recipe(request,id):
     all_reviews = Reviews.objects.all()
     return redirect(f'/recipe/info/{recipe.id}')
     # context = {
-    #     "Reviews": review,
-    #     "All_Reviews": all_reviews,
+    #     "Reviews": recipe.reviews_of_recipe.all()
     # }
     # return render(request,'add_review_ajax.html',context)
 
