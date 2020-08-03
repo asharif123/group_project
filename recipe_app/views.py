@@ -221,8 +221,9 @@ def dish_of_the_week(request):
     sorted_recipes = []
     # print(['*']*100)
     for recipe in recipes:
-        all_recipes.append(recipe)
-        all_reviews.append(len(recipe.reviews_of_recipe.all()))
+        if recipe.is_dessert == False:
+            all_recipes.append(recipe)
+            all_reviews.append(len(recipe.reviews_of_recipe.all()))
     all_reviews = sorted(all_reviews, reverse=True)
     i = 0
     for i in range(len(all_reviews)):
