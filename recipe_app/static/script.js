@@ -50,6 +50,7 @@ $(document).ready(function(){
                 $('#add_review').html(serverResponse);
                 $('.content').trigger('reset');
 
+            
             }
         })
     })
