@@ -27,7 +27,7 @@ urlpatterns = [
     path('recipe/edit/<int:id>', views.edit_recipe),
     path('recipe/update/<int:id>', views.update_recipe),
     path('review/add', views.add_review_to_recipe),
-    path('review/delete/<int:id>', views.delete_review),
+    path('review/delete', views.delete_review),
     path('recipe/filter', views.filter_recipe),
     # DESSERTS
     path('desserts/page', views.desserts),

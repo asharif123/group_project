@@ -47,7 +47,7 @@ $(document).ready(function(){
             data: $(this).serialize(),
             success: function(serverResponse){
                 console.log(serverResponse)
-                $('#add_review').html(serverResponse);
+                $('#reviews').html(serverResponse);
                 $('#review').trigger('reset');
             
             }
@@ -55,8 +55,6 @@ $(document).ready(function(){
     })
 
     $('#dessert_review').submit(function(e){
-<<<<<<< HEAD
-=======
         e.preventDefault()
         $.ajax({
             url: "/dessert/review/add",
@@ -64,46 +62,38 @@ $(document).ready(function(){
             data: $(this).serialize(),
             success: function(serverResponse){
                 console.log(serverResponse)
-                $('#add_dessert_review').html(serverResponse);
+                $('#reviews').html(serverResponse);
+                // resets everything in the form!
                 $('#dessert_review').trigger('reset');
             
             }
         })
     })
 
-    $('#delete_review').submit(function(e){
->>>>>>> 30462b816a85875ad7d4291875f1ca546b3fdb93
+
+// .on pays attention to everything happening in ajax, everytime delete review in AJAX
+// .submit page loads and looks at it, when replaced, jQuery no longer pays attention
+// .on sees any new info or content being put in
+// form.delete_review specifices exactly what we are listening to
+
+    $('#reviews').on('submit','form.delete_review',function(e){
         e.preventDefault()
+        // console.log($(this).serialize())
+        // delete THIS review
+        // var review = $(this).attr('review')
         $.ajax({
-            url: "/dessert/review/add",
+            url: "/review/delete",
             method: "POST",
             data: $(this).serialize(),
             success: function(serverResponse){
                 console.log(serverResponse)
-                $('#add_dessert_review').html(serverResponse);
-                $('#dessert_review').trigger('reset');
+                $('#reviews').html(serverResponse)
+                // $('.content').trigger('reset');
+
             
             }
         })
     })
-
-    // $('#delete_review').submit(function(e){
-    //     e.preventDefault()
-    //     // delete THIS review
-    //     var review = $(this).attr('review')
-    //     $.ajax({
-    //         url: "/review/delete",
-    //         method: "POST",
-    //         data: $(this).serialize(),
-    //         success: function(serverResponse){
-    //             console.log(serverResponse)
-    //             $('#'+review).html(serverResponse)
-    //             // $('.content').trigger('reset');
-
-            
-    //         }
-    //     })
-    // })
 
 
 })
