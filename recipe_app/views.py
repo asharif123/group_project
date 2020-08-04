@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
 import bcrypt
@@ -181,36 +181,6 @@ def add_recipe(request):
     # print(recipe.ingredients)
     return redirect(f'/recipe/info/{recipe.id}')
 
-def recipe_info(request,id):
-    if 'userid' not in request.session:
-        return redirect('/')
-
-    recipe = Recipes.objects.get(id=id)
-    # grab the ingredients, split by new line
-    ingredients = recipe.ingredients.split('\n')
-    summary = recipe.summary.split('\n')
-    steps = recipe.steps.split('\n')
-    rating = 0
-    for review in recipe.reviews_of_recipe.all():
-        rating += review.rating
-    if len(recipe.reviews_of_recipe.all()) > 0:
-        average_rating = round(rating / len(recipe.reviews_of_recipe.all()),2)
-    else:
-        average_rating = 0
-
-
-    context = {
-        'user': User.objects.get(id=request.session['userid']),
-        'recipe': Recipes.objects.get(id=id),
-        'ingredients': ingredients,
-        'summaries': summary,
-        'steps': steps,
-        "Reviews": recipe.reviews_of_recipe.all().order_by("-created_at"),
-        "rating": average_rating
-    }
-
-    # return render(request,'recipe_info.html',context)
-    return render(request,'recipe_info.html',context)
 
 
 def dish_of_the_week(request):
@@ -309,6 +279,37 @@ def update_recipe(request,id):
         recipe_to_update.save()
         return redirect(f'/recipe/info/{recipe_to_update.id}')
 
+def recipe_info(request,id):
+    if 'userid' not in request.session:
+        return redirect('/')
+
+    recipe = Recipes.objects.get(id=id)
+    # grab the ingredients, split by new line
+    ingredients = recipe.ingredients.split('\n')
+    summary = recipe.summary.split('\n')
+    steps = recipe.steps.split('\n')
+    rating = 0
+    for review in recipe.reviews_of_recipe.all():
+        rating += review.rating
+    if len(recipe.reviews_of_recipe.all()) > 0:
+        average_rating = round(rating / len(recipe.reviews_of_recipe.all()),2)
+    else:
+        average_rating = 0
+
+
+    context = {
+        'user': User.objects.get(id=request.session['userid']),
+        'recipe': Recipes.objects.get(id=id),
+        'ingredients': ingredients,
+        'summaries': summary,
+        'steps': steps,
+        "Reviews": recipe.reviews_of_recipe.all().order_by("-created_at"),
+        "rating": average_rating
+    }
+
+    # return render(request,'recipe_info.html',context)
+    return render(request,'recipe_info.html',context)
+
 def add_review_to_recipe(request):
     if 'userid' not in request.session:
         return redirect('/')
@@ -320,7 +321,7 @@ def add_review_to_recipe(request):
             messages.error(request, value)
         return redirect(f'/recipe/info/{recipe.id}')
     review = Reviews.objects.create(content=request.POST["Review"],rating=request.POST["Rating"],reviewer=User.objects.get(id=request.session['userid']),recipe=recipe)
-    all_reviews = Reviews.objects.all()
+    # all_reviews = Reviews.objects.all()
     # return redirect(f'/recipe/info/{recipe.id}')
     context = {
         "Reviews": recipe.reviews_of_recipe.all().order_by('-created_at'),
@@ -328,13 +329,24 @@ def add_review_to_recipe(request):
     }
     return render(request,'add_review_ajax.html',context)
 
-def delete_review(request,review_id,recipe_id):
+def delete_review(request):
     if 'userid' not in request.session:
         return redirect('/')
+    user = User.objects.get(id=request.session['userid'])
+    recipe = Recipes.objects.get(id=request.POST["recipe_id"])
 
-    review = Reviews.objects.get(id=review_id)
-    review.delete()
-    return redirect(f'/recipe/info/{recipe_id}')
+    review = Reviews.objects.get(id=request.POST["review_id"])
+    review_to_delete = review.delete()
+    print(['*']*100)
+    print(review)
+    # return redirect(f'/recipe/info/{recipe_id}')
+    # context = {
+    #     "Reviews": recipe.reviews_of_recipe.all().order_by('-created_at'),
+    #     "User": user
+    # }
+
+    return HttpResponse(review)
+
 
 def desserts(request):
     recipes = Recipes.objects.all()
