@@ -146,9 +146,15 @@
                                                 {% if User.id == review.reviewer.id %}
                                                     <div class="form-group row">
                                                         <div class="col-12">
-                                                            <a class="btn btn-sm btn-danger" href="/review/delete" role="button">Delete Review</a>
+                                                            <form action="/review/delete/{{review.id}}" method="POST" id="delete_review" review="{{review.id}}">
+                                                                {% csrf_token %}
+                                                                <button type="submit" class="btn btn-danger">Delete Review</button>
+                                                                <input name="recipe_id" type="hidden" value="{{recipe.id}}">  
+                                                                {% comment %} <input name="review_id" type="hidden" value="{{review.id}}">   {% endcomment %}
+                                                            </form>
                                                         </div>
                                                     </div>
+
                                                 {% endif %}
                                             </div>
                                             <br>
