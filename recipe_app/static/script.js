@@ -54,6 +54,21 @@ $(document).ready(function(){
         })
     })
 
+    $('#dessert_review').submit(function(e){
+        e.preventDefault()
+        $.ajax({
+            url: "/dessert/review/add",
+            method: "POST",
+            data: $(this).serialize(),
+            success: function(serverResponse){
+                console.log(serverResponse)
+                $('#add_dessert_review').html(serverResponse);
+                $('#dessert_review').trigger('reset');
+            
+            }
+        })
+    })
+
     $('#delete_review').submit(function(e){
         e.preventDefault()
         // delete THIS review

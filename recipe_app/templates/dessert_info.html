@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="style/css/style.css">
+        <link rel="stylesheet" type="text/css" href="static/css/style.css">
         {% load static %}
 
     </head>
@@ -99,7 +99,7 @@
 
                     </div>
                     <br><br>
-                    <form action="/dessert/review/add" method="post">
+                    <form action="/dessert/review/add" method="post" id="dessert_review">
                         {% csrf_token %}
 
                         <div class="form-group">
@@ -128,7 +128,7 @@
                         <u><em><h3 class="text-center">Reviews:</h3></em></u>
                         <br>
 
-                        <div class="form-group row">
+                        <div class="form-group row" id="add_dessert_review">
                             {% for review in Reviews %}
                                 <br><br>
                                 <div class="card-deck col-12 bg-dark-rounded">
@@ -168,6 +168,7 @@
                 <li>Copyright &copy;  2020</li>
             </ul>
         </footer>
-
+        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script src="{% static 'script.js' %}"></script>
     </body>
 </html>
