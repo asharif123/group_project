@@ -48,10 +48,30 @@ $(document).ready(function(){
             success: function(serverResponse){
                 console.log(serverResponse)
                 $('#add_review').html(serverResponse);
-                $('.content').trigger('reset');
-
+                $('#review').trigger('reset');
+            
             }
         })
     })
+
+    $('#delete_review').submit(function(e){
+        e.preventDefault()
+        // delete THIS review
+        var review = $(this).attr('review')
+
+        $.ajax({
+            url: "/review/delete",
+            method: "POST",
+            data: $(this).serialize(),
+            success: function(serverResponse){
+                console.log(serverResponse)
+                $('#'+review).html(serverResponse)
+                // $('.content').trigger('reset');
+
+            
+            }
+        })
+    })
+
 
 })

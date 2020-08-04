@@ -34,14 +34,14 @@
                     </div>
 
                     <div class="col-12">
-                        {% comment %} {% if messages %}
+                        {% if messages %}
                             <br>
                             {% for message in messages %}
                                 <ul>   
-                                    <p><li class="text text-danger">{{ message }}</li></strong></p>
+                                    <h5><li class="text text-danger">{{ message }}</li></h5>
                                 </ul>    
                             {% endfor %}
-                        {% endif %}  {% endcomment %}
+                        {% endif %}
                
                         <img src="{{recipe.image.url}}" width="500" height="500">
                     </div>
@@ -120,7 +120,7 @@
                             <div class="form-group">
                                 <em><h4>Add Review: </h4></em>
                                 <br>
-                                <textarea class="form-control" class="content" id="exampleFormControlTextarea1" name="Review" rows="3"></textarea>
+                                <textarea class="form-control" id="content" name="Review" rows="3"></textarea>
                             </div>
                             <div class="form-group row">
                                 <div class="col-12">
@@ -147,7 +147,7 @@
                         <div class="form-group row" id="add_review">
                             {% for review in Reviews %}
                                 <br><br>
-                                <div class="card-deck col-12 bg-dark-rounded">
+                                <div class="card-deck col-12 bg-dark-rounded" id="{{review.id}}">
                                     <br><br><br><br>
                                     <div class="card mb-4 bg-light rounded border border-dark">
 
@@ -162,7 +162,12 @@
                                                 {% if user.id == review.reviewer.id %}
                                                     <div class="form-group row">
                                                         <div class="col-12">
-                                                            <a class="btn btn-sm btn-danger" href="/review/delete/{{review.id}}/{{recipe.id}}" role="button">Delete Review</a>
+                                                            <form action="/review/delete" method="POST" id="delete_review" review="{{review.id}}">
+                                                                {% csrf_token %}
+                                                                <button type="submit" class="btn btn-danger">Delete Review</button>
+                                                                <input name="recipe_id" type="hidden" value="{{recipe.id}}">  
+                                                                <input name="review_id" type="hidden" value="{{review.id}}">  
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 {% endif %}
