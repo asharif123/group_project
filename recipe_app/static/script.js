@@ -55,6 +55,24 @@ $(document).ready(function(){
     })
 
     $('#dessert_review').submit(function(e){
+<<<<<<< HEAD
+=======
+        e.preventDefault()
+        $.ajax({
+            url: "/dessert/review/add",
+            method: "POST",
+            data: $(this).serialize(),
+            success: function(serverResponse){
+                console.log(serverResponse)
+                $('#add_dessert_review').html(serverResponse);
+                $('#dessert_review').trigger('reset');
+            
+            }
+        })
+    })
+
+    $('#delete_review').submit(function(e){
+>>>>>>> 30462b816a85875ad7d4291875f1ca546b3fdb93
         e.preventDefault()
         $.ajax({
             url: "/dessert/review/add",
