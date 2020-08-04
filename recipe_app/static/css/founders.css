@@ -56,6 +56,8 @@
 .background{
     background: rgba(204, 204, 204, 0.5);
     padding-bottom: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 h2{
     margin-left: 40px;
