@@ -147,6 +147,7 @@
                         <div class="form-group row" id="add_review">
                             {% for review in Reviews %}
                                 <br><br>
+                                {% comment %} START OF REVIEW {% endcomment %}
                                 <div class="card-deck col-12 bg-dark-rounded" id="{{review.id}}">
                                     <br><br><br><br>
                                     <div class="card mb-4 bg-light rounded border border-dark">
@@ -162,11 +163,11 @@
                                                 {% if user.id == review.reviewer.id %}
                                                     <div class="form-group row">
                                                         <div class="col-12">
-                                                            <form action="/review/delete" method="POST" id="delete_review" review="{{review.id}}">
+                                                            <form action="/review/delete/{{review.id}}" method="POST" id="delete_review" review="{{review.id}}">
                                                                 {% csrf_token %}
                                                                 <button type="submit" class="btn btn-danger">Delete Review</button>
                                                                 <input name="recipe_id" type="hidden" value="{{recipe.id}}">  
-                                                                <input name="review_id" type="hidden" value="{{review.id}}">  
+                                                                {% comment %} <input name="review_id" type="hidden" value="{{review.id}}">   {% endcomment %}
                                                             </form>
                                                         </div>
                                                     </div>
