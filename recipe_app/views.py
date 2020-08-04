@@ -319,15 +319,15 @@ def add_review_to_recipe(request):
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
-        return redirect(f'/recipe/info/{recipe.id}')
-    review = Reviews.objects.create(content=request.POST["Review"],rating=request.POST["Rating"],reviewer=User.objects.get(id=request.session['userid']),recipe=recipe)
-    # all_reviews = Reviews.objects.all()
-    # return redirect(f'/recipe/info/{recipe.id}')
-    context = {
-        "Reviews": recipe.reviews_of_recipe.all().order_by('-created_at'),
-        "User": user
-    }
-    return render(request,'add_review_ajax.html',context)
+        # return redirect('/review/add')
+        # return redirect(f'/recipe/info/{recipe.id}')
+    else:
+        review = Reviews.objects.create(content=request.POST["Review"],rating=request.POST["Rating"],reviewer=User.objects.get(id=request.session['userid']),recipe=recipe)
+        context = {
+            "Reviews": recipe.reviews_of_recipe.all().order_by('-created_at'),
+            "User": user
+        }
+        return render(request,'add_review_ajax.html',context)
 
 def delete_review(request):
     if 'userid' not in request.session:
@@ -345,7 +345,7 @@ def delete_review(request):
     #     "User": user
     # }
 
-    return HttpResponse(review)
+    return HttpResponse(review_to_delete)
 
 
 def desserts(request):

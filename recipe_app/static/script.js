@@ -48,8 +48,7 @@ $(document).ready(function(){
             success: function(serverResponse){
                 console.log(serverResponse)
                 $('#add_review').html(serverResponse);
-                $('.content').trigger('reset');
-
+                $('#review').trigger('reset');
             
             }
         })
