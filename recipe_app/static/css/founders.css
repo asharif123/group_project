@@ -9,8 +9,13 @@
     display: inline-block;
     margin-left: 40px;
 }
-#content1{
+#content1 ul{
     display: inline-block;
+    vertical-align: top;
+}
+#content1 li{
+    display: inline-block;
+    vertical-align: top;
 }
 #founder2img{
     width:440px; /*width of your image*/
@@ -23,11 +28,35 @@
     display: inline-block;
     margin-left: 40px;
 }
-#content2{
+#content2 ul{
     display: inline-block;
+    vertical-align: top;
+}
+#content2 li{
+    display: inline-block;
+    vertical-align: top;
 }
 #navbar{
     background: rgb(33,33,33);
     background: linear-gradient(360deg, rgba(33,33,33,1) 0%, rgba(52,52,52,1) 50%, rgba(33,33,33,1) 100%);
     border-radius: 5px;
+}
+.container{
+    background-image:url('../background2.jpg');
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* text-align: center;
+    vertical-align: bottom;
+    padding: 10px 0px 10px 0px;
+    color: black;
+    margin-top: 50px; */
+}
+.background{
+    background: rgba(204, 204, 204, 0.5);
+    padding-bottom: 50px;
+}
+h2{
+    margin-left: 40px;
 }
