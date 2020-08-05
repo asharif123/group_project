@@ -6,9 +6,9 @@
     background-size: cover;
   }
 
-  .dessert, .best, .dessert_info{
+  .dessert, .dessert_info{
 
-  background-image: url("/static/small_cakes.JPG");
+  background-image: url("/static/dessert.jpeg");
   background-size: 100%;
   height: 100%;
   background-size: cover;
@@ -17,7 +17,44 @@
   
   }
 
+  .best{
+
+    background-image: url("/static/dessert.jpeg");
+    background-size: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    
+    
+    }
+
+  /* .dessert, .best, .dessert_info{
+
+    background-image: url("/static/cakeslice.jpg");
+    background-size: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    
+    
+    } */
   
+
+
+  .heading {
+    color: darkorchid;
+    font-size: 40px;
+  }
+
+  .info {
+    color: red;
+    font-size: 20px;
+  }
+
+  .text {
+    color: yellow;
+
+  }
   
   
 /* .welcome{
