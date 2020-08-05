@@ -76,6 +76,8 @@ def terms(request):
 
 def userprofile(request, id):
     user = User.objects.get(id = request.session['userid'])
+    print(user.profilepic)
+
     context = {
         'user':user,
     }
@@ -85,7 +87,22 @@ def search(request):
     user = User.objects.get(id = request.session['userid'])
     pass
 
+def adding_profile_pic(request, id):
+    user = User.objects.get(id = request.session['userid'])
+    # picture = Profile_Pic.objects.create(profilepic=request.POST['profilepic'], user=user)
+    pic = request.FILES['picture']
+    fs=FileSystemStorage()
+    user_pic = fs.save(pic.name, pic)
+    url = fs.url(user_pic)
+    user.profilepic=url
+    user.save()
+    return redirect(f"/userprofile/{user.id}")
 
+def deleteprofilepicture(request):
+    user =User.objects.get(id=request.session['userid'])
+    user.profilepic = None
+    user.save()
+    return redirect(f"/userprofile/{user.id}")
 
 ################################################################################################################
 
