@@ -11,3 +11,8 @@ a:hover{
 a{
     text-decoration: none;
 }
+#navbar{
+    background: rgb(33,33,33);
+    background: linear-gradient(360deg, rgba(33,33,33,1) 0%, rgba(52,52,52,1) 50%, rgba(33,33,33,1) 100%);
+    border-radius: 5px;
+}

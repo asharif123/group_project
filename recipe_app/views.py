@@ -76,6 +76,8 @@ def terms(request):
 
 def userprofile(request, id):
     user = User.objects.get(id = request.session['userid'])
+    print(user.profilepic)
+
     context = {
         'user':user,
     }
@@ -85,7 +87,22 @@ def search(request):
     user = User.objects.get(id = request.session['userid'])
     pass
 
+def adding_profile_pic(request, id):
+    user = User.objects.get(id = request.session['userid'])
+    # picture = Profile_Pic.objects.create(profilepic=request.POST['profilepic'], user=user)
+    pic = request.FILES['picture']
+    fs=FileSystemStorage()
+    user_pic = fs.save(pic.name, pic)
+    url = fs.url(user_pic)
+    user.profilepic=url
+    user.save()
+    return redirect(f"/userprofile/{user.id}")
 
+def deleteprofilepicture(request):
+    user =User.objects.get(id=request.session['userid'])
+    user.profilepic = None
+    user.save()
+    return redirect(f"/userprofile/{user.id}")
 
 ################################################################################################################
 
@@ -94,6 +111,8 @@ def welcome(request):
         return redirect('/')
 
     user = User.objects.get(id=request.session['userid'])
+    print(['*']*100)
+    print(user)
     recipes = Recipes.objects.all()
     all_reviews = []
     all_recipes = []
@@ -203,8 +222,7 @@ def dish_of_the_week(request):
         for recipe in all_recipes:
             if (all_reviews[i] == len(recipe.reviews_of_recipe.all())):
                 sorted_recipes.append(recipe)
-    # for recipe in sorted_recipes:
-    #     print(len(recipe.reviews_of_recipe.all()))
+
     if len(sorted_recipes) > 0:
         top_recipe = sorted_recipes[0]
         ingredients = top_recipe.ingredients.split('\n')
@@ -311,7 +329,7 @@ def recipe_info(request,id):
         "rating": average_rating
     }
 
-    # return render(request,'recipe_info.html',context)
+
     return render(request,'recipe_info.html',context)
 
 def add_review_to_recipe(request):
@@ -323,8 +341,7 @@ def add_review_to_recipe(request):
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
-        # return redirect('/review/add')
-        # return redirect(f'/recipe/info/{recipe.id}')
+
     else:
         review = Reviews.objects.create(content=request.POST["Review"],rating=request.POST["Rating"],reviewer=User.objects.get(id=request.session['userid']),recipe=recipe)
         context = {
@@ -333,7 +350,7 @@ def add_review_to_recipe(request):
         }
         return render(request,'add_review_ajax.html',context)
 
-def add_review_to_dessert(request):
+def add_review_to_dessert(request): 
     if 'userid' not in request.session:
         return redirect('/')
     user = User.objects.get(id=request.session['userid'])
@@ -342,8 +359,7 @@ def add_review_to_dessert(request):
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
-        # return redirect('/review/add')
-        # return redirect(f'/recipe/info/{recipe.id}')
+
     else:
         review = Reviews.objects.create(content=request.POST["Review"],rating=request.POST["Rating"],reviewer=User.objects.get(id=request.session['userid']),recipe=recipe)
         context = {
@@ -361,7 +377,7 @@ def delete_review(request):
     print(request.POST)
     review = Reviews.objects.get(id=request.POST["review_id"])
     review.delete()
-    # return redirect(f'/recipe/info/{recipe_id}')
+
     context = {
         "Reviews": recipe.reviews_of_recipe.all().order_by('-created_at'),
         "User": user
@@ -387,8 +403,7 @@ def desserts(request):
         for recipe in all_recipes:
             if (all_reviews[i] == len(recipe.reviews_of_recipe.all())):
                 sorted_recipes.append(recipe)
-    # for recipe in sorted_recipes:
-    #     print(len(recipe.reviews_of_recipe.all()))
+
     top_recipes = sorted_recipes
 
     context = {
@@ -417,7 +432,6 @@ def add_dessert(request):
         for key, value in errors.items():
             messages.error(request, value)
         return redirect('/desserts/create')
-    # print(request.POST["Description"])
     if request.method == "POST":
         # request.Files used for uploading anything
         pic = request.FILES["Image"]
@@ -427,7 +441,6 @@ def add_dessert(request):
     print(['*']*100)
     print(url)
     recipe = Recipes.objects.create(name=request.POST["Recipe_Name"],summary=request.POST["Description"],ingredients=request.POST["Ingredients"],steps=request.POST["Steps"], image=user_pic, owner=User.objects.get(id=request.session['userid']),is_dessert=True)
-    # print(recipe.ingredients)
     return redirect(f'/dessert/info/{recipe.id}')
 
 def dessert_info(request,id):
@@ -460,25 +473,6 @@ def dessert_info(request,id):
     }
 
     return render(request,'dessert_info.html',context)
-
-# def add_review_to_dessert(request):
-#     if 'userid' not in request.session:
-#         return redirect('/')
-#     user = User.objects.get(id=request.session['userid'])
-#     recipe = Recipes.objects.get(id=request.POST["recipe_id"])
-#     errors = Reviews.objects.reviews_validator(request.POST)
-#     if len(errors) > 0:
-#         for key, value in errors.items():
-#             messages.error(request, value)
-#         # return redirect('/review/add')
-#         # return redirect(f'/recipe/info/{recipe.id}')
-#     else:
-#         review = Reviews.objects.create(content=request.POST["Review"],rating=request.POST["Rating"],reviewer=User.objects.get(id=request.session['userid']),recipe=recipe)
-#         context = {
-#             "Reviews": recipe.reviews_of_recipe.all().order_by('-created_at'),
-#             "User": user
-#         }
-#     return render(request,'add_review_ajax.html',context)
 
 
 def delete_dessert(request,id):
