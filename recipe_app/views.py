@@ -186,12 +186,13 @@ def add_recipe(request):
 def dish_of_the_week(request):
     if 'userid' not in request.session:
         return redirect('/')
+    
     recipes = Recipes.objects.all()
 
     all_reviews = []
     all_recipes = []
     sorted_recipes = []
-    # print(['*']*100)
+
     for recipe in recipes:
         if recipe.is_dessert == False:
             all_recipes.append(recipe)
@@ -204,18 +205,21 @@ def dish_of_the_week(request):
                 sorted_recipes.append(recipe)
     # for recipe in sorted_recipes:
     #     print(len(recipe.reviews_of_recipe.all()))
-    top_recipe = sorted_recipes[0]
-    ingredients = top_recipe.ingredients.split('\n')
-    summary = top_recipe.summary.split('\n')
-    steps = top_recipe.steps.split('\n')
-    rating = 0
-    for review in top_recipe.reviews_of_recipe.all():
-        rating += review.rating
-    if len(top_recipe.reviews_of_recipe.all()) > 0:
-        average_rating = round(rating / len(top_recipe.reviews_of_recipe.all()),2)
+    if len(sorted_recipes) > 0:
+        top_recipe = sorted_recipes[0]
+        ingredients = top_recipe.ingredients.split('\n')
+        summary = top_recipe.summary.split('\n')
+        steps = top_recipe.steps.split('\n')
+        rating = 0
+        for review in top_recipe.reviews_of_recipe.all():
+            rating += review.rating
+        if len(top_recipe.reviews_of_recipe.all()) > 0:
+            average_rating = round(rating / len(top_recipe.reviews_of_recipe.all()),2)
+        else:
+            average_rating = 0
+        reviews = top_recipe.reviews_of_recipe.all()
     else:
-        average_rating = 0
-    reviews = top_recipe.reviews_of_recipe.all()
+        return redirect('/cookbook')
 
     context = {
         'User': User.objects.get(id=request.session['userid']),
@@ -545,25 +549,21 @@ def dessert_of_the_week(request):
         for recipe in all_recipes:
             if (all_reviews[i] == len(recipe.reviews_of_recipe.all())):
                 sorted_recipes.append(recipe)
-    # for recipe in sorted_recipes:
-    #     print(len(recipe.reviews_of_recipe.all()))
-    top_recipe = sorted_recipes[0]
-    print(['*']*100)
-    # print(top_recipe.name)
-    ingredients = top_recipe.ingredients.split('\n')
-    summary = top_recipe.summary.split('\n')
-    steps = top_recipe.steps.split('\n')
-    rating = 0
-    for review in top_recipe.reviews_of_recipe.all():
-        rating += review.rating
-    if len(top_recipe.reviews_of_recipe.all()) > 0:
-        average_rating = round(rating / len(top_recipe.reviews_of_recipe.all()),2)
+    if len(sorted_recipes) > 0:
+        top_recipe = sorted_recipes[0]
+        ingredients = top_recipe.ingredients.split('\n')
+        summary = top_recipe.summary.split('\n')
+        steps = top_recipe.steps.split('\n')
+        rating = 0
+        for review in top_recipe.reviews_of_recipe.all():
+            rating += review.rating
+        if len(top_recipe.reviews_of_recipe.all()) > 0:
+            average_rating = round(rating / len(top_recipe.reviews_of_recipe.all()),2)
+        else:
+            average_rating = 0
+        reviews = top_recipe.reviews_of_recipe.all().order_by('-created_at')
     else:
-        average_rating = 0
-    reviews = top_recipe.reviews_of_recipe.all().order_by('-created_at')
-    # print("ALL")
-    # for review in reviews:
-    #     print(review.content)
+        return redirect('/desserts/page')
 
     context = {
         'User': User.objects.get(id=request.session['userid']),
