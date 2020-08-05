@@ -6,7 +6,7 @@
     background-size: cover;
   }
 
-  .dessert{
+  .dessert, .best{
 
   background-image: url("/static/small_cakes.JPG");
   background-size: 100%;
