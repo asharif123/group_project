@@ -16,6 +16,8 @@ urlpatterns = [
     path('terms', views.terms),
     path('userprofile/<int:id>', views.userprofile),
     path('search', views.search),
+    path('adding_profile_pic/<int:id>', views.adding_profile_pic),
+    path('deletepicture', views.deleteprofilepicture),
     ####################Ricky
     # main dishes
     path('welcome', views.welcome),

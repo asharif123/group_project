@@ -9,38 +9,50 @@
 
     <title>User Profile</title>
 </head>
-<body>
-                    <div class="row">
-                        <div class="col-12 text-center">
-                                <nav class="navbar navbar-expand-lg rounded navbar-light bg-secondary">
-                                <span class="border border-dark"></span>
-                                <div class="collapse navbar-collapse text-center" id="navbarNav">
-                                    <ul class="navbar-nav text-center">
-                                        <li class="nav-item active text-center">
-                                            <h4><a class="nav-link text-white" href="/cookbook">Home</a></h4>
-                                        </li>
-                                        <li class="nav-item active">
-                                            <h4><a class="nav-link text-white" href="/founders">Founders</a></h4>
-                                        </li>
-                                        <li class="nav-item active">
-                                            <h4><a class="nav-link text-white" href="#">Careers</a></h4>
-                                        </li>
-                                        <li class="nav-item active">
-                                            <h4><a class="nav-link text-white" href="/userprofile/{{User.id}}">{{User.first_name}} {{User.last_name}}</a></h4>
-                                        </li>
-                                        <li class="nav-item active">
-                                            <h4><a class="nav-link text-white" href="/logout">Logout</a></h4>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                </span>
-                            </nav>
-                        </div>
-                    </div>
+<body class="container">
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 ">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link text-white" href="/cookbook">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link text-white" href="/founders">Founders</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link text-white" href="#">Careers</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link text-white" href="userprofile/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link text-white" href="/logout">Logout</a>
+            </li>
+          </ul>
+          <form action="search" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>             
 
     <h2>User's Profile Picture</h2>
-    <img src="../static/IMG-5969.jpg" alt="Profile Picture">    
+      {% if user.profilepic %}
+        <img src="{{user.profilepic}}" alt="profile picture">
+        <a href="/deletepicture"> <button>Delete Profile Picture</button> </a>
+      {% else %}
+    <form action="/adding_profile_pic/{{user.id}}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="picture">
+        <button type="submit">Upload</button>
+    </form>
+    {% endif %}
+
+    <!-- <img src="../static/IMG-5969.jpg" alt="Profile Picture">     -->
     <h2>User's Full Name</h2>
     <p>{{user.first_name}} {{user.last_name}}</p>
     <h2>User's Email</h2>
