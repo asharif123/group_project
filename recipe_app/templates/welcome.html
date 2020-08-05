@@ -47,7 +47,7 @@
                     <br><br><br>
                 </div>
                 <div class="col-2">
-                    <div class="col-12">
+                    {% comment %} <div class="col-12"> {% endcomment %}
                         <form action="/recipe/filter" method="post" id="recipe_filter">
                             {% csrf_token %}
                             <input type="text" class="form-control form-control-sm rounded-plll" placeholder="Filter Recipes (Case Sensitive)" name="Filter">
@@ -56,7 +56,7 @@
                         </form>
                         <br>
                         <a href="/welcome" class="btn btn-sm btn-danger" role="button" id="clear_recipe" aria-pressed="true">Clear Filter</a>
-                    </div>
+                    {% comment %} </div> {% endcomment %}
                 </div>
             </div>                    
 
