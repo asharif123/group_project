@@ -3,7 +3,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-recipe_app\static\css\style.css
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,34 +13,35 @@ recipe_app\static\css\style.css
 <body class="dessert bg-light">
     <div class="container">
         <div class="recipes col-12">
-            <div class="navbar col-12">
-                <em><h1 class="active display-6">Welcome {{user.first_name}}!</h1></em>
-                <div class="col-6 text-center">
-                    <nav class="navbar navbar-expand-lg rounded navbar-light bg-secondary">
-                        <span class="border border-dark"></span>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav">
-                                <li class="nav-item active">
-                                    <a class="nav-link text-white" href="/cookbook">Home</a>
-                                </li>
-                                <li class="nav-item active">
-                                    <a class="nav-link text-white" href="/founders">Founders</a>
-                                </li>
-                                <li class="nav-item active">
-                                    <a class="nav-link text-white" href="#">Careers</a>
-                                </li>
-                                <li class="nav-item active">
-                                    <a class="nav-link text-white" href="/userprofile/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
-                                </li>
-                                <li class="nav-item active">
-                                    <a class="nav-link text-white" href="/logout">Logout</a>
-                                </li>
-
-                            </ul>
-                        </div>
-                        </span>
-                    </nav>
-
+            <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 ">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="/cookbook">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="/founders">Founders</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="#">Careers</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="userprofile/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="/logout">Logout</a>
+                    </li>
+                  </ul>
+                  <form action="search" class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+                </div>
+              </nav>
                     <br><br><br>
                     <a class="btn btn-primary btn-lg" href="/desserts/create" role="button">Create Recipe</a>
                     <br><br><br>

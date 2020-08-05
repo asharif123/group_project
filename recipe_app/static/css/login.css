@@ -1,4 +1,19 @@
+.container{
+    background-image:url('../login_image3.jpg');
 
+    background-position-y: 25%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-color: #dbd7d6; */
+}
+.backwall{
+    background: rgba(245, 245, 245, 0.6);
+    display: inline-block;
+    vertical-align: bottom;
+    padding: 10px 0px 10px 0px;
+    color: black;
+    margin-top: 50px;
+}
 .messages{
     color: red;
 }
