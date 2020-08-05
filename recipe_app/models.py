@@ -68,7 +68,7 @@ class Recipes_Manager(models.Manager):
 class Reviews_Manager(models.Manager):
     def reviews_validator(self,postData):
         errors = {}
-        if len(postData["Review"]) < 10:
+        if len(postData["Review"]) < 1:
             errors["Review"] = "Review must be at least 10 characters long!"
 
         return errors
