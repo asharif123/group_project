@@ -5,11 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
     <title>Login and Registration</title>
 </head>
 <body class="container">
     <div class="backwall">
-    <h1>Find Your Favorite Recipe, Or Share Your Own!</h1>
+    <h1>Find Your Favorite Recipe, Or Share Your Own!</h1><br>
 
     {% if messages %}
         <ul class="messages">
@@ -23,17 +31,17 @@
         <h2>Registration:</h2>
         <form action="/registration" method="POST">
             {% csrf_token %}
-            <p>First Name:</p>
-            <input type="text" name="first_name" placeholder="Enter First Name Here">
-            <p>Last Name:</p>
-            <input type="text" name="last_name" placeholder="Enter Last Name Here">
-            <p>Email:</p>
-            <input type="text" name="email" placeholder="Enter Email Here">
-            <p>Password:</p>
-            <input type="password" name="password" placeholder="Enter Password Here">
-            <p>Confirm Password:</p>
-            <input type="password" name="confirm_password" placeholder="Re-Enter Password Here">
-            <input type="submit" value="Register!">
+            <p class="mb-1 font-weight-bold">First Name:</p>
+            <input type="text" name="first_name" placeholder="Enter First Name Here" class="mb-3"><br>
+            <p class="mb-1 font-weight-bold">Last Name:</p>
+            <input type="text" name="last_name" placeholder="Enter Last Name Here" class="mb-3"><br>
+            <p class="mb-1 font-weight-bold">Email:</p>
+            <input type="text" name="email" placeholder="Enter Email Here" class="mb-3"><br>
+            <p class="mb-1 font-weight-bold">Password:</p>
+            <input type="password" name="password" placeholder="Enter Password Here" class="mb-3"><br>
+            <p class="mb-1 font-weight-bold">Confirm Password:</p>
+            <input type="password" name="confirm_password" placeholder="Re-Enter Password Here" class="mb-3"><br>
+            <input type="submit" value="Register!" class="pb-1 pl-3 pb-2 text-center btn btn-primary">
         </form>
     </div>
 
@@ -45,15 +53,25 @@
         <form action="/login" method="POST">
             {% csrf_token %}
 
-            <p>Email:</p>
-            <input type="text" name="email" placeholder="Enter Email Here">
-            <p>Password:</p>
-            <input type="password" name="password" placeholder="Enter Password Here">
+            <p class="mb-1 font-weight-bold">Email:</p>
+            <input type="text" name="email" placeholder="Enter Email Here" class="mb-3"><br>
+            <p class="mb-1 font-weight-bold">Password:</p>
+            <input type="password" name="password" placeholder="Enter Password Here" class="mb-3"><br>
 
-            <input type="submit" value="Login!">
+            <input type="submit" value="Login!" class="pl-3 text-center btn btn-success">
         </form>
 
     </div>  
+</div>
+
+<div class="col-12" id="footer1">
+    <footer class="my-5 pt-5 light text-muted text-center text-center">
+        {% comment %} <ul> {% endcomment %}
+        <a class="text-white" href="#">Advertisements</a>  <a class="text-white" href="privacypolicy">Private Policy</a> <a class="text-white" href="#">Help</a> <a class="text-white" href="#">About</a> <a class="text-white" href="terms">Terms of Service</a>
+        <br>
+        Copyright &copy;  2020
+        {% comment %} </ul> {% endcomment %}
+    </footer>
 </div>
 </body>
 </html>
