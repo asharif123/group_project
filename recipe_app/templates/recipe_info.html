@@ -8,22 +8,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="/static/css/style.css">
 
-        {% comment %} <script>
-            $(document).ready(function(){
-
-                $('#review').submit(function(e){
-                    e.preventDefault()
-                    $.ajax({
-                        url: "/review/add/{{recipe.id}}",
-                        method: "POST", recipe_app\static\css\style.css
-                        data: $(this).serialize(),
-                        success: function(serverResponse){
-                            console.log(serverResponse);
-
-                        }
-                    })
-                })
-        </script> {% endcomment %}
+  
     </head>
     <body class="recipe_info bg-light">
         <div class="container">
