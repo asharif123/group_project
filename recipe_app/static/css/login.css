@@ -1,4 +1,20 @@
+.container{
+    background-image:url('../login_image3.jpg');
 
+    background-position-y: 25%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-color: #dbd7d6; */
+}
+.backwall{
+    background: rgba(245, 245, 245, 0.5);
+    display: inline-block;
+    vertical-align: center;
+    padding: 10px 10px 30px 10px;
+    color: black;
+    margin-top: 50px;
+    margin-left: 120px;
+}
 .messages{
     color: red;
 }
@@ -16,6 +32,9 @@
     border: 1px solid black;
     vertical-align: top;
 }
+h1{
+    margin-bottom: 20px;
+}
 
 h2{
     margin-top: 5px;
@@ -29,4 +48,7 @@ p{
 }
 input{
     padding-right: 15px;
+}
+#footer1{
+    color: white;
 }

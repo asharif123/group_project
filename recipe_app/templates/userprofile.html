@@ -10,6 +10,9 @@
     <title>User Profile</title>
 </head>
 <body class="container">
+  <div id="background" class="d-inline-block">
+    <h1 class="text-center">{{user.first_name}} {{user.last_name}}'s Profile Page</h1>
+    
     <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 ">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -40,25 +43,37 @@
         </div>
       </nav>             
 
-    <h2>User's Profile Picture</h2>
+    <h2 class="ml-3">User's Profile Picture</h2>
       {% if user.profilepic %}
-        <img src="{{user.profilepic}}" alt="profile picture">
-        <a href="/deletepicture"> <button>Delete Profile Picture</button> </a>
+        <img src="{{user.profilepic}}" alt="profile picture" class="ml-3 mt-2 d-inline-block"><br><br>
+        <a href="/deletepicture" class="ml-3 d-inline-block"> <button>Delete Profile Picture</button> </a><br><br>
       {% else %}
     <form action="/adding_profile_pic/{{user.id}}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="file" name="picture">
-        <button type="submit">Upload</button>
+        <input type="file" name="picture" class="d-inline-block">
+        <button type="submit" class="d-inline-block">Upload Profile Picture</button><br>
     </form>
     {% endif %}
 
-    <!-- <img src="../static/IMG-5969.jpg" alt="Profile Picture">     -->
-    <h2>User's Full Name</h2>
-    <p>{{user.first_name}} {{user.last_name}}</p>
-    <h2>User's Email</h2>
-    <p>{{user.email}}</p>
-    <h2>When Did You Join?</h2>
-    <p>{{user.created_at}}</p>
-    
+    <div id="textbody" class="ml-3">
+      <h2 class="titleinfo mb-2">User's Full Name</h2>
+      <p class="userinfo">{{user.first_name}} {{user.last_name}}</p><br>
+      <h2 class="titleinfo">User's Email</h2>
+      <p class="userinfo">{{user.email}}</p><br>
+      <h2 class="titleinfo">When Did You Join?</h2>
+      <p class="userinfo">{{user.created_at}}</p><br>
+    </div>
+
+  </div>  
+
+  <div class="col-12">
+    <footer class="my-5 pt-5 light text-muted text-center text-center">
+        {% comment %} <ul> {% endcomment %}
+        <a class="text-black" href="#">Advertisements</a>  <a href="privacypolicy">Private Policy</a> <a href="#">Help</a> <a href="#">About</a> <a href="terms">Terms of Service</a>
+        <br>
+        Copyright &copy;  2020
+        {% comment %} </ul> {% endcomment %}
+    </footer>
+</div>
 </body>
 </html>
