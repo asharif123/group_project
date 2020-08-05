@@ -62,7 +62,7 @@
             </div>                    
 
             <div class="col-12">
-                <u><em><h1 class="text-center">Popular Desserts</h1></em></u>
+                <u><em><h1 class="text text-center">Popular Desserts</h1></em></u>
                 <br><br>
                 {% for recipe in Top_Recipes %}
                     <div class="row">
@@ -71,13 +71,13 @@
                             <a href="/recipe/info/{{recipe.id}}"><img src="{{recipe.image.url}}" width="400" height="350"></a>
                         </div>
                         <div class="col-6">
-                            <em><h2><strong>{{recipe.name}}</strong></h2></em>
+                            <em><h2 class="text"><strong>{{recipe.name}}</strong></h2></em>
                             <br>
-                            <em><h4>Created by: {{recipe.owner.first_name}} {{recipe.owner.last_name}}</h4></em>
+                            <em><h4 class="text">Created by: {{recipe.owner.first_name}} {{recipe.owner.last_name}}</h4></em>
                             <br><br>
-                            <em><h4>Total Reviews: {{recipe.reviews_of_recipe.all.count}}</h4></em>
+                            <em><h4 class="text">Total Reviews: {{recipe.reviews_of_recipe.all.count}}</h4></em>
                             <br>
-                            <em><h6>Added On: {{recipe.created_at}}</h6></em>
+                            <em><h6 class="text">Added On: {{recipe.created_at}}</h6></em>
                             <br><br>
 
                             <a class="btn btn-success" href="/dessert/info/{{recipe.id}}" role="button">Full Dessert Information</a>

@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-6 px-3">
                     <div class="form-group row">
-                        <em><h1 class="active">Welcome {{User.first_name}}!</h1></em>
+                        <em><h1 class="text">Welcome {{User.first_name}}!</h1></em>
                     </div>
 
                     {% if messages %}
@@ -30,30 +30,30 @@
                     </div>
                     <div class="col-12">
                         <br>
-                        <em><strong><h1>{{recipe.name}}</h1></strong></em>
+                        <em><strong><h1 class="text">{{recipe.name}}</h1></strong></em>
                         <br><br>
-                        <em><h4>Average rating: {{rating}} stars</h4></em>
+                        <em><h4 class="text">Average rating: {{rating}} stars</h4></em>
                         <br>
-                        <em><h6>Created by: {{recipe.owner.first_name}} {{recipe.owner.last_name}}</h6></em>
+                        <em><h6 class="text">Created by: {{recipe.owner.first_name}} {{recipe.owner.last_name}}</h6></em>
                         <br>
-                        <em><u><h4>Description:</h4></u></em>
+                        <u><em><h4 class="heading">Description:</h4></em></u>
                         <br>
                         {% for summary in summaries %}
-                            {{ summary }}
+                            <b><p class="info">{{ summary }}</p></b>
                             <br>
                         {% endfor %}
                         <br>
-                        <em><u><h4>Ingredients: </h4></u></em>
+                        <em><u><h4 class="heading">Ingredients: </h4></u></em>
                         <br>
                         {% for ingredient in ingredients %}
-                            {{ ingredient }}
+                            <b><p class="info">{{ ingredient }}</p></b>
                             <br>
                         {% endfor %}
                         <br>
-                        <em><u><h4>Steps: </h4></u></em>
+                        <em><u><h4 class="heading">Steps: </h4></u></em>
                         <br>
                         {% for step in steps %}
-                            {{ step }}
+                            <b><p class="info">{{ step }}</p></b>
                             <br>
                         {% endfor %}
                         {% if User.id == recipe.owner.id %}
@@ -102,7 +102,7 @@
                         {% csrf_token %}
 
                         <div class="form-group">
-                            <em><h4>Add Review: </h4></em>
+                            <em><h4 class="text">Add Review: </h4></em>
                             <br>
                             <textarea class="form-control" id="exampleFormControlTextarea1" name="Review" rows="3"></textarea>
                         </div>
@@ -124,7 +124,7 @@
                     </form>
                     <br>
                     <div class="col-12">
-                        <u><em><h3 class="text-center">Reviews:</h3></em></u>
+                        <u><em><h3 class="text text-center">Reviews:</h3></em></u>
                         <br>
 
                         <div class="form-group row" id="reviews">
