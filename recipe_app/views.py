@@ -238,7 +238,7 @@ def dish_of_the_week(request):
     context = {
         'User': User.objects.get(id=request.session['userid']),
         "recipes": top_recipe,
-        "summary": summary,
+        "summaries": summary,
         "ingredients": ingredients,
         "steps": steps,
         "rating": average_rating,
