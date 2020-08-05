@@ -219,20 +219,21 @@ def dish_of_the_week(request):
         for recipe in all_recipes:
             if (all_reviews[i] == len(recipe.reviews_of_recipe.all())):
                 sorted_recipes.append(recipe)
-    # for recipe in sorted_recipes:
-    #     print(len(recipe.reviews_of_recipe.all()))
-    top_recipe = sorted_recipes[0]
-    ingredients = top_recipe.ingredients.split('\n')
-    summary = top_recipe.summary.split('\n')
-    steps = top_recipe.steps.split('\n')
-    rating = 0
-    for review in top_recipe.reviews_of_recipe.all():
-        rating += review.rating
-    if len(top_recipe.reviews_of_recipe.all()) > 0:
-        average_rating = round(rating / len(top_recipe.reviews_of_recipe.all()),2)
+    if len(sorted_recipes) > 0:
+        top_recipe = sorted_recipes[0]
+        ingredients = top_recipe.ingredients.split('\n')
+        summary = top_recipe.summary.split('\n')
+        steps = top_recipe.steps.split('\n')
+        rating = 0
+        for review in top_recipe.reviews_of_recipe.all():
+            rating += review.rating
+        if len(top_recipe.reviews_of_recipe.all()) > 0:
+            average_rating = round(rating / len(top_recipe.reviews_of_recipe.all()),2)
+        else:
+            average_rating = 0
+        reviews = top_recipe.reviews_of_recipe.all()
     else:
-        average_rating = 0
-    reviews = top_recipe.reviews_of_recipe.all()
+        return redirect('/cookbook')
 
     context = {
         'User': User.objects.get(id=request.session['userid']),
@@ -474,24 +475,6 @@ def dessert_info(request,id):
 
     return render(request,'dessert_info.html',context)
 
-# def add_review_to_dessert(request):
-#     if 'userid' not in request.session:
-#         return redirect('/')
-#     user = User.objects.get(id=request.session['userid'])
-#     recipe = Recipes.objects.get(id=request.POST["recipe_id"])
-#     errors = Reviews.objects.reviews_validator(request.POST)
-#     if len(errors) > 0:
-#         for key, value in errors.items():
-#             messages.error(request, value)
-#         # return redirect('/review/add')
-#         # return redirect(f'/recipe/info/{recipe.id}')
-#     else:
-#         review = Reviews.objects.create(content=request.POST["Review"],rating=request.POST["Rating"],reviewer=User.objects.get(id=request.session['userid']),recipe=recipe)
-#         context = {
-#             "Reviews": recipe.reviews_of_recipe.all().order_by('-created_at'),
-#             "User": user
-#         }
-#     return render(request,'add_review_ajax.html',context)
 
 
 def delete_dessert(request,id):
@@ -562,26 +545,21 @@ def dessert_of_the_week(request):
         for recipe in all_recipes:
             if (all_reviews[i] == len(recipe.reviews_of_recipe.all())):
                 sorted_recipes.append(recipe)
-    # for recipe in sorted_recipes:
-    #     print(len(recipe.reviews_of_recipe.all()))
-    top_recipe = sorted_recipes[0]
-    print(['*']*100)
-    # print(top_recipe.name)
-    ingredients = top_recipe.ingredients.split('\n')
-    summary = top_recipe.summary.split('\n')
-    steps = top_recipe.steps.split('\n')
-    rating = 0
-    for review in top_recipe.reviews_of_recipe.all():
-        rating += review.rating
-    if len(top_recipe.reviews_of_recipe.all()) > 0:
-        average_rating = round(rating / len(top_recipe.reviews_of_recipe.all()),2)
+    if len(sorted_recipes) > 0:
+        top_recipe = sorted_recipes[0]
+        ingredients = top_recipe.ingredients.split('\n')
+        summary = top_recipe.summary.split('\n')
+        steps = top_recipe.steps.split('\n')
+        rating = 0
+        for review in top_recipe.reviews_of_recipe.all():
+            rating += review.rating
+        if len(top_recipe.reviews_of_recipe.all()) > 0:
+            average_rating = round(rating / len(top_recipe.reviews_of_recipe.all()),2)
+        else:
+            average_rating = 0
+        reviews = top_recipe.reviews_of_recipe.all()
     else:
-        average_rating = 0
-    reviews = top_recipe.reviews_of_recipe.all().order_by('-created_at')
-    # print("ALL")
-    # for review in reviews:
-    #     print(review.content)
-
+        return redirect('/desserts/page')
     context = {
         'User': User.objects.get(id=request.session['userid']),
         "recipes": top_recipe,
