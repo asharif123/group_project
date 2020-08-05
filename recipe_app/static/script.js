@@ -48,6 +48,7 @@ $(document).ready(function(){
             success: function(serverResponse){
                 console.log(serverResponse)
                 $('#reviews').html(serverResponse);
+                // reset everything in the form action having id review
                 $('#review').trigger('reset');
             
             }
