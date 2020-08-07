@@ -375,7 +375,7 @@ def delete_review(request):
     print(request.POST)
     review = Reviews.objects.get(id=request.POST["review_id"])
     review.delete()
-    # return redirect(f'/recipe/info/{recipe_id}')
+
     context = {
         "Reviews": recipe.reviews_of_recipe.all().order_by('-created_at'),
         "User": user
@@ -401,8 +401,7 @@ def desserts(request):
         for recipe in all_recipes:
             if (all_reviews[i] == len(recipe.reviews_of_recipe.all())):
                 sorted_recipes.append(recipe)
-    # for recipe in sorted_recipes:
-    #     print(len(recipe.reviews_of_recipe.all()))
+
     top_recipes = sorted_recipes
 
     context = {
