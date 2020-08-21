@@ -337,8 +337,6 @@ def add_review_to_recipe(request):
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
-        # return redirect('/review/add')
-        # return redirect(f'/recipe/info/{recipe.id}')
     else:
         review = Reviews.objects.create(content=request.POST["Review"],rating=request.POST["Rating"],reviewer=User.objects.get(id=request.session['userid']),recipe=recipe)
         context = {
@@ -356,8 +354,6 @@ def add_review_to_dessert(request):
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
-        # return redirect('/review/add')
-        # return redirect(f'/recipe/info/{recipe.id}')
     else:
         review = Reviews.objects.create(content=request.POST["Review"],rating=request.POST["Rating"],reviewer=User.objects.get(id=request.session['userid']),recipe=recipe)
         context = {
@@ -455,6 +451,7 @@ def dessert_info(request,id):
     rating = 0
     for review in recipe.reviews_of_recipe.all():
         rating += review.rating
+    ##if review has been added, show the average rating
     if len(recipe.reviews_of_recipe.all()) > 0:
         average_rating = round(rating / len(recipe.reviews_of_recipe.all()),2)
     else:
@@ -519,7 +516,7 @@ def update_dessert(request,id):
             user_pic = fs.save(pic.name, pic)
             url = fs.url(user_pic)
 
-            recipe_to_update.image = user_pic
+        recipe_to_update.image = user_pic
         recipe_to_update.save()
         return redirect(f'/dessert/info/{recipe_to_update.id}')
 
@@ -533,7 +530,6 @@ def dessert_of_the_week(request):
     all_reviews = []
     all_recipes = []
     sorted_recipes = []
-    # print(['*']*100)
     for recipe in recipes:
         if recipe.is_dessert:
             all_recipes.append(recipe)
