@@ -106,6 +106,7 @@ def deleteprofilepicture(request):
 
 ################################################################################################################
 
+## Main page
 def welcome(request):
     if 'userid' not in request.session:
         return redirect('/')
@@ -199,7 +200,7 @@ def add_recipe(request):
     return redirect(f'/recipe/info/{recipe.id}')
 
 
-
+##shows dish with most reviews
 def dish_of_the_week(request):
     if 'userid' not in request.session:
         return redirect('/')
@@ -379,7 +380,7 @@ def delete_review(request):
 
     return render(request,'add_review_ajax.html',context)
 
-
+##shows all desserts
 def desserts(request):
     recipes = Recipes.objects.all()
     all_reviews = []
@@ -416,6 +417,8 @@ def create_dessert(request):
     }
 
     return render(request, 'add_dessert.html', context)
+
+##add dessert
 
 def add_dessert(request):
     if 'userid' not in request.session:
@@ -564,7 +567,6 @@ def dessert_of_the_week(request):
         "rating": average_rating,
         "Reviews": reviews
     }
-
 
     
     return render(request,'dessert_of_the_week.html',context)

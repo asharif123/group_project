@@ -85,6 +85,7 @@ class Recipes(models.Model):
     steps = models.TextField()
     image = models.ImageField()
     owner = models.ForeignKey(User,related_name="recipes_of_user",on_delete = models.CASCADE)
+    ##useful to ONLY print desserts
     is_dessert = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

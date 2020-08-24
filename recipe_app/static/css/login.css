@@ -1,16 +1,16 @@
 .container{
     background-image:url('../login_image3.jpg');
 
-    background-position-y: 25%;
+    /* background-position-y: 25%; */
     background-repeat: no-repeat;
     background-size: cover;
 }
 .backwall{
     background: rgba(245, 245, 245, 0.5);
-    display: inline-block;
-    vertical-align: center;
+    /* display: inline-block;
+    vertical-align: center; */
     padding: 10px 10px 30px 10px;
-    color: black;
+    /* color: black; */
     margin-top: 50px;
     margin-left: 120px;
 }
