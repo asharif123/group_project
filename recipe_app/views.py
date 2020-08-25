@@ -390,16 +390,16 @@ def desserts(request):
     }
     return render(request,'dessert.html',context)
 
-def create_dessert(request):
-    if 'userid' not in request.session:
-        return redirect('/')
+# def create_dessert(request):
+#     if 'userid' not in request.session:
+#         return redirect('/')
 
-    user = User.objects.get(id=request.session['userid'])
-    context = {
-        "User": user
-    }
+#     user = User.objects.get(id=request.session['userid'])
+#     context = {
+#         "User": user
+#     }
 
-    return render(request, 'add_dessert.html', context)
+#     return render(request, 'add_dessert.html', context)
 
 ##add dessert
 
@@ -423,49 +423,16 @@ def add_dessert(request):
     print(url)
     recipe = Recipes.objects.create(name=request.POST["Recipe_Name"],summary=request.POST["Description"],ingredients=request.POST["Ingredients"],steps=request.POST["Steps"], image=user_pic, owner=User.objects.get(id=request.session['userid']),is_dessert=True)
     # print(recipe.ingredients)
-    return redirect(f'/dessert/info/{recipe.id}')
+    return redirect(f'/recipe/info/{recipe.id}')
 
-# def dessert_info(request,id):
+
+# def delete_dessert(request,id):
 #     if 'userid' not in request.session:
 #         return redirect('/')
 
-#     recipe = Recipes.objects.get(id=id)
-#     # grab the ingredients, split by new line
-#     ingredients = recipe.ingredients.split('\n')
-#     summary = recipe.summary.split('\n')
-#     steps = recipe.steps.split('\n')
-#     rating = 0
-#     for review in recipe.reviews_of_recipe.all():
-#         rating += review.rating
-#     ##if review has been added, show the average rating
-#     if len(recipe.reviews_of_recipe.all()) > 0:
-#         average_rating = round(rating / len(recipe.reviews_of_recipe.all()),2)
-#     else:
-#         average_rating = 0
-
-
-#     context = {
-#         'User': User.objects.get(id=request.session['userid']),
-#         'recipe': recipe,
-#         'ingredients': ingredients,
-#         'summaries': summary,
-#         'steps': steps,
-#         "Reviews": recipe.reviews_of_recipe.all().order_by("-created_at"),
-#         "rating": average_rating
-
-#     }
-
-#     return render(request,'dessert_info.html',context)
-
-
-
-def delete_dessert(request,id):
-    if 'userid' not in request.session:
-        return redirect('/')
-
-    dessert_to_delete = Recipes.objects.get(id=id)
-    dessert_to_delete.delete()
-    return redirect('/desserts/page')
+#     dessert_to_delete = Recipes.objects.get(id=id)
+#     dessert_to_delete.delete()
+#     return redirect('/desserts/page')
 
 def edit_dessert(request,id):
     if 'userid' not in request.session:
