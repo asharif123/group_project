@@ -35,7 +35,6 @@ urlpatterns = [
     path('desserts/page', views.desserts),
     path('desserts/create', views.create_dessert),
     path('desserts/add', views.add_dessert),
-    path('dessert/info/<int:id>', views.dessert_info),
     path('dessert/delete/<int:id>', views.delete_dessert),
     path('dessert/edit/<int:id>', views.edit_dessert),
     path('dessert/update/<int:id>', views.update_dessert),
