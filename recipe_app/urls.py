@@ -33,8 +33,9 @@ urlpatterns = [
     path('recipe/filter', views.filter_recipe),
     # DESSERTS
     path('desserts/page', views.desserts),
-    # path('desserts/create', views.create_dessert),
+    path('desserts/create', views.create_dessert),
     path('desserts/add', views.add_dessert),
+    path('dessert/info/<int:id>', views.dessert_info),
     path('dessert/update/<int:id>', views.update_dessert),
     path('dessert/best', views.dessert_of_the_week),
     path('dessert/filter', views.filter_dessert)
