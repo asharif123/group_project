@@ -58,8 +58,8 @@
                         {% endfor %}
                         {% if User.id == recipe.owner.id %}
                             <br>
-                            <a class="btn btn-danger" href="/dessert/delete/{{recipe.id}}" role="button">Delete Recipe</a>
-                            <a class="btn btn-success" href="/dessert/edit/{{recipe.id}}" role="button">Edit Recipe</a>
+                            <a class="btn btn-danger" href="/recipe/delete/{{recipe.id}}" role="button">Delete Recipe</a>
+                            <a class="btn btn-success" href="/recipe/edit/{{recipe.id}}" role="button">Edit Recipe</a>
 
                         {% endif %}
                     </div>
