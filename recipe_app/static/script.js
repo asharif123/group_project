@@ -55,21 +55,21 @@ $(document).ready(function(){
         })
     })
 
-    $('#dessert_review').submit(function(e){
-        e.preventDefault()
-        $.ajax({
-            url: "/dessert/review/add",
-            method: "POST",
-            data: $(this).serialize(),
-            success: function(serverResponse){
-                console.log(serverResponse)
-                $('#reviews').html(serverResponse);
-                // resets everything in the form!
-                $('#dessert_review').trigger('reset');
+    // $('#dessert_review').submit(function(e){
+    //     e.preventDefault()
+    //     $.ajax({
+    //         url: "/dessert/review/add",
+    //         method: "POST",
+    //         data: $(this).serialize(),
+    //         success: function(serverResponse){
+    //             console.log(serverResponse)
+    //             $('#reviews').html(serverResponse);
+    //             // resets everything in the form!
+    //             $('#dessert_review').trigger('reset');
             
-            }
-        })
-    })
+    //         }
+    //     })
+    // })
 
 
 // .on pays attention to everything happening in ajax, everytime delete review in AJAX
