@@ -425,37 +425,37 @@ def add_dessert(request):
     # print(recipe.ingredients)
     return redirect(f'/dessert/info/{recipe.id}')
 
-def dessert_info(request,id):
-    if 'userid' not in request.session:
-        return redirect('/')
+# def dessert_info(request,id):
+#     if 'userid' not in request.session:
+#         return redirect('/')
 
-    recipe = Recipes.objects.get(id=id)
-    # grab the ingredients, split by new line
-    ingredients = recipe.ingredients.split('\n')
-    summary = recipe.summary.split('\n')
-    steps = recipe.steps.split('\n')
-    rating = 0
-    for review in recipe.reviews_of_recipe.all():
-        rating += review.rating
-    ##if review has been added, show the average rating
-    if len(recipe.reviews_of_recipe.all()) > 0:
-        average_rating = round(rating / len(recipe.reviews_of_recipe.all()),2)
-    else:
-        average_rating = 0
+#     recipe = Recipes.objects.get(id=id)
+#     # grab the ingredients, split by new line
+#     ingredients = recipe.ingredients.split('\n')
+#     summary = recipe.summary.split('\n')
+#     steps = recipe.steps.split('\n')
+#     rating = 0
+#     for review in recipe.reviews_of_recipe.all():
+#         rating += review.rating
+#     ##if review has been added, show the average rating
+#     if len(recipe.reviews_of_recipe.all()) > 0:
+#         average_rating = round(rating / len(recipe.reviews_of_recipe.all()),2)
+#     else:
+#         average_rating = 0
 
 
-    context = {
-        'User': User.objects.get(id=request.session['userid']),
-        'recipe': recipe,
-        'ingredients': ingredients,
-        'summaries': summary,
-        'steps': steps,
-        "Reviews": recipe.reviews_of_recipe.all().order_by("-created_at"),
-        "rating": average_rating
+#     context = {
+#         'User': User.objects.get(id=request.session['userid']),
+#         'recipe': recipe,
+#         'ingredients': ingredients,
+#         'summaries': summary,
+#         'steps': steps,
+#         "Reviews": recipe.reviews_of_recipe.all().order_by("-created_at"),
+#         "rating": average_rating
 
-    }
+#     }
 
-    return render(request,'dessert_info.html',context)
+#     return render(request,'dessert_info.html',context)
 
 
 
