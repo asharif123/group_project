@@ -22,7 +22,7 @@
  
  - Python
  
- - Javascript (used to implement AJAX for adding/deleting reviews)
+ - Javascript (used to implement AJAX for adding/deleting reviews and filtering recipes)
  
  
  
