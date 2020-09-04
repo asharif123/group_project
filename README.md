@@ -62,3 +62,20 @@
   You can also filter out different recipes in the search bar and clear the filters.
   
   ![main_recipes](https://user-images.githubusercontent.com/49471791/92188684-1d807000-ee12-11ea-9258-462eaac4cbdf.JPG)
+  
+  
+  # Recipe Information
+  
+ Contains recipe information for that particular recipe with ingredients and steps.
+  
+ Reviews can be added and deleted efficiently using AJAX in the backend
+
+    
+![recipe_info](https://user-images.githubusercontent.com/49471791/92189251-1017b580-ee13-11ea-9452-2eac0f4c1786.JPG)
+ 
+![recipe_info_2](https://user-images.githubusercontent.com/49471791/92189253-127a0f80-ee13-11ea-8eb5-8b555d39b9be.JPG)
+
+![recipe_info_3](https://user-images.githubusercontent.com/49471791/92189255-1443d300-ee13-11ea-803b-3c5c458b7e02.JPG)
+
+    
+    
