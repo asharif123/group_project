@@ -45,6 +45,8 @@
   
   - Desserts
   
+  The welcome page also contains a slideshow of food images.
+  
   ![welcome](https://user-images.githubusercontent.com/49471791/92188280-04c38a80-ee11-11ea-9a69-672bfbc3855d.JPG)
 
   
