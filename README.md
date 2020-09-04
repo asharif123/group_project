@@ -85,6 +85,8 @@
  Rating is out of 5 scale (5 being the highest number of stars)
   
  Reviews can be added and deleted efficiently using AJAX in the backend
+ 
+ ONLY the logged in user who posted the recipe can either edit the recipe information or delete it entirely.
 
     
 ![recipe_info](https://user-images.githubusercontent.com/49471791/92189251-1017b580-ee13-11ea-9452-2eac0f4c1786.JPG)
