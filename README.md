@@ -66,7 +66,7 @@
   
   # Recipe Information
   
- Contains recipe information for that particular recipe with ingredients and steps.
+ The 3 images below contain recipe information for that particular recipe with ingredients and steps.
   
  Reviews can be added and deleted efficiently using AJAX in the backend
 
