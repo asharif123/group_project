@@ -3,7 +3,9 @@
  
  This is a group project where a user can add or delete recipes, add or delete desserts, see the recipe of the week (recipe having most reviews), and dessert of the week.
  
- A logged user can add reviews and ratings to each recipe.
+ User must login in order to add or delete recipes but a user can still see all the food recipes without needing to login.
+ 
+ A logged in user can add reviews and ratings to each recipe.
  
  The following technologies were used for Frontend and Backend:
  
