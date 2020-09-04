@@ -53,3 +53,10 @@
 
   
   
+  # Popular Dishes
+  
+  Contains all the popular food recipe dishes posted by logged in users and a button for full recipe information.
+  
+  You can also filter out different recipes in the search bar and clear the filters.
+  
+  ![main_recipes](https://user-images.githubusercontent.com/49471791/92188684-1d807000-ee12-11ea-9258-462eaac4cbdf.JPG)
