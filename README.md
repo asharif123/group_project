@@ -33,6 +33,7 @@
  ![login](https://user-images.githubusercontent.com/49471791/92186916-23278700-ee0d-11ea-9b0e-fa396955113b.JPG)
  
  
+ 
   # Welcome
   
   User gets directed to the welcome page containing following webpages:
@@ -51,6 +52,7 @@
   
   ![welcome](https://user-images.githubusercontent.com/49471791/92188280-04c38a80-ee11-11ea-9a69-672bfbc3855d.JPG)
 
+  
   
   
   # Popular Dishes
