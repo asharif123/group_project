@@ -53,7 +53,14 @@
   ![welcome](https://user-images.githubusercontent.com/49471791/92188280-04c38a80-ee11-11ea-9a69-672bfbc3855d.JPG)
 
   
+  # Founders
   
+  Shows the creators of the website
+  
+  
+  ![founders](https://user-images.githubusercontent.com/49471791/92189744-4efa3b00-ee14-11ea-9ecb-eaf1b2cd194d.JPG)
+
+
   
   # Popular Dishes
   
@@ -67,6 +74,8 @@
   # Recipe Information
   
  The 3 images below contain recipe information for that particular recipe with ingredients and steps.
+ 
+ Rating is out of 5 scale (5 being the highest number of stars)
   
  Reviews can be added and deleted efficiently using AJAX in the backend
 
@@ -76,6 +85,15 @@
 ![recipe_info_2](https://user-images.githubusercontent.com/49471791/92189253-127a0f80-ee13-11ea-8eb5-8b555d39b9be.JPG)
 
 ![recipe_info_3](https://user-images.githubusercontent.com/49471791/92189255-1443d300-ee13-11ea-803b-3c5c458b7e02.JPG)
+
+
+  # Recipe of the week
+  
+  Webpage shows the recipe with the most reviews with its corresponding average rating
+  
+  ![dish_of_the_week](https://user-images.githubusercontent.com/49471791/92189704-2ffba900-ee14-11ea-9d33-c3397349a3d1.JPG)
+
+  
 
     
     
