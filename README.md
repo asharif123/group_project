@@ -60,6 +60,13 @@
   
   ![founders](https://user-images.githubusercontent.com/49471791/92189744-4efa3b00-ee14-11ea-9ecb-eaf1b2cd194d.JPG)
 
+  
+  # User Profile
+  
+  
+  User is able to see his/her profile information and has the option to upload an image.
+  
+ ![userprofile](https://user-images.githubusercontent.com/49471791/92189849-879a1480-ee14-11ea-8286-46d056bc0fdc.JPG)
 
   
   # Popular Dishes
